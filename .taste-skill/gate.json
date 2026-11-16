@@ -1,0 +1,419 @@
+{
+ "start": "2026-11-15T17:00:11.089Z",
+ "round": 1,
+ "idle": 0,
+ "errors": 0,
+ "status": "pass",
+ "history": [
+  {
+   "at": "2026-11-15T18:09:54.086Z",
+   "mode": "manual",
+   "status": "fail",
+   "fails": 2,
+   "round": 1,
+   "reused": false,
+   "stopHookActive": false
+  },
+  {
+   "at": "2026-11-15T18:10:13.053Z",
+   "mode": "manual",
+   "status": "pass",
+   "fails": 0,
+   "round": 1,
+   "reused": true,
+   "stopHookActive": false
+  },
+  {
+   "at": "2026-11-15T18:11:36.096Z",
+   "mode": "hook",
+   "host": "claude",
+   "decision": "allow",
+   "reason": "no build is active here",
+   "stopHookActive": false
+  },
+  {
+   "at": "2026-11-15T20:05:49.394Z",
+   "mode": "hook",
+   "host": "claude",
+   "decision": "allow",
+   "reason": "no build is active here",
+   "stopHookActive": false
+  }
+ ],
+ "max": 3,
+ "marker": {
+  "page": "index.html",
+  "url": null,
+  "root": null,
+  "kind": "service",
+  "category": "market research consultancy",
+  "primary": "Request a proposal",
+  "rounds": 3,
+  "start": "2026-11-15T17:00:11.089Z",
+  "by": "gate.mjs --start"
+ },
+ "manual": true,
+ "roundKey": "0669b3efbb87d7a5:84a14024",
+ "roundFree": false,
+ "idleFree": false,
+ "blockKey": null,
+ "fp": "0669b3efbb87d7a5",
+ "page": "index.html",
+ "found": {
+  "fails": [
+   {
+    "check": "no-visual",
+    "where": "section#work \"Studies we have run\"",
+    "msg": "pictures, effects and mocks cover 14% of this section; a feature section needs a visual (about 25% or more)",
+    "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits",
+    "widths": [
+     390
+    ],
+    "from": "consistency",
+    "ids": [
+     "no-visual"
+    ],
+    "wheres": [
+     "section#work \"Studies we have run\""
+    ]
+   },
+   {
+    "check": "section-gaps",
+    "where": "main#top > section.hero.hero--split / section#services",
+    "msg": "116px between these sections, -67% against the median 350px",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     390
+    ],
+    "from": "consistency",
+    "ids": [
+     "section-gaps"
+    ],
+    "wheres": [
+     "main#top > section.hero.hero--split / section#services"
+    ]
+   }
+  ],
+  "warns": [
+   {
+    "check": "scroll-reveal",
+    "where": "section#house > div.wrap > p.mo-wh__text \"We have run brand trackers for FMCG and \"",
+    "msg": "starts \"color\" (0.2 s) the moment it is scrolled into view (an IntersectionObserver) on span.mo-w:nth-of-type(1) (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)",
+    "fix": "show it at rest: no fade, rise or unmask when it is scrolled into view",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "scroll-reveal",
+    "where": "section#approach \"How a study runs, in 3 steps Questionnai\"",
+    "msg": "starts \"border-left-color\" (0.3 s) the moment it is scrolled into view (an IntersectionObserver) on li.mo-pc__step:nth-of-type(1) (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)",
+    "fix": "show it at rest: no fade, rise or unmask when it is scrolled into view",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "pinned",
+    "where": "section#approach > div.wrap.mo-pc__grid \"How a study runs, in 3 steps Questionnai\"",
+    "msg": "held on screen for 1 screen of scroll (position: sticky) while the page moves on (inside a dealt moment's section, [data-moment]: expected on every kind, two moments at most, house rule; its still is judged under reduced motion)",
+    "fix": "let the section scroll with the page",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "cta",
+    "where": "section#work \"Studies we have run\"",
+    "msg": "a section over 1.5 screens long with no link or button in it",
+    "fix": "add the action: a button in the hero, one on every priced item, one in the closing section",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "cta",
+    "where": "section#approach \"How a study runs, in 3 steps\"",
+    "msg": "a section over 1.5 screens long with no link or button in it",
+    "fix": "add the action: a button in the hero, one on every priced item, one in the closing section",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "copy-headings",
+    "where": "div.mo-pc__text > ol.mo-pc__steps > li.mo-pc__step:nth-of-type(3) > h3 \"Analysis and debrief\"",
+    "msg": "\"Analysis and debrief\" names no product, part, place or section (the one brand line a page may have)",
+    "fix": "name the thing in every heading: the product, a part, the place or a section noun",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "section-gaps",
+    "where": "main#top > section.hero.hero--split / section#services",
+    "msg": "177px between these sections, -39% against the median 292px",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "section-gaps",
+    "where": "section#work / section#approach",
+    "msg": "418px between these sections, +43% against the median 292px of gaps at a change of ground",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "photo-set",
+    "where": "div.grid > article.card.card--row:nth-of-type(2) > div.panel > img.frame__img \"ux-desk-800.webp\"",
+    "msg": "6 photographs in more than one look: saturation from 0.08 to 0.41; the odd one out is ux-desk-800.webp",
+    "fix": "grade the photographs to one look (light, colour, warmth), or replace the odd one out",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav-labels",
+    "where": "div.nav__menu > div.wrap.grid > div.menu-col.span-3:nth-of-type(1) > a:nth-of-type(1) \"Consumer surveysCAPI, CAWI and online pa\"",
+    "msg": "\"Consumer surveysCAPI, CAWI and online pa\" opens a section headed \"Research services\"",
+    "fix": "name each nav link after the heading of the section it opens",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav-labels",
+    "where": "div.nav__menu > div.wrap.grid > div.menu-col.span-3:nth-of-type(1) > a:nth-of-type(2) \"Brand health trackingTrackers that run f\"",
+    "msg": "\"Brand health trackingTrackers that run f\" opens a section headed \"Research services\"",
+    "fix": "name each nav link after the heading of the section it opens",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav-labels",
+    "where": "div.nav__menu > div.wrap.grid > div.menu-col.span-3:nth-of-type(1) > a:nth-of-type(3) \"Concept and pack testsBefore money is co\"",
+    "msg": "\"Concept and pack testsBefore money is co\" opens a section headed \"Research services\"",
+    "fix": "name each nav link after the heading of the section it opens",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav-labels",
+    "where": "div.nav__menu > div.wrap.grid > div.menu-col.span-3:nth-of-type(2) > a:nth-of-type(1) \"Focus groupsGroups and in-depth intervie\"",
+    "msg": "\"Focus groupsGroups and in-depth intervie\" opens a section headed \"Research services\"",
+    "fix": "name each nav link after the heading of the section it opens",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav-labels",
+    "where": "div.nav__menu > div.wrap.grid > div.menu-col.span-3:nth-of-type(2) > a:nth-of-type(2) \"EthnographyShop-alongs and home visits\"",
+    "msg": "\"EthnographyShop-alongs and home visits\" opens a section headed \"Research services\"",
+    "fix": "name each nav link after the heading of the section it opens",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav-labels",
+    "where": "div.nav__item:nth-of-type(1) > div.nav__menu > div.wrap.grid > a.menu-card.span-3 \"Car clinics Dubai and Riyadh\"",
+    "msg": "\"Car clinics Dubai and Riyadh\" opens a section headed \"Studies we have run\"",
+    "fix": "name each nav link after the heading of the section it opens",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav-labels",
+    "where": "div.wrap.nav__bar > nav.nav__links > div.nav__item:nth-of-type(2) > a.nav__link \"Work\"",
+    "msg": "\"Work\" opens a section headed \"Studies we have run\"",
+    "fix": "name each nav link after the heading of the section it opens",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav-labels",
+    "where": "div.wrap.nav__bar > nav.nav__links > div.nav__item:nth-of-type(3) > a.nav__link \"Approach\"",
+    "msg": "\"Approach\" opens a section headed \"How a study runs, in 3 steps\"",
+    "fix": "name each nav link after the heading of the section it opens",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav-labels",
+    "where": "div.nav__menu > div.wrap.grid > div.menu-col.span-3:nth-of-type(1) > a:nth-of-type(1) \"Consumer surveysCAPI, CAWI and\"",
+    "msg": "6 entries of one menu go to the same place (#services): \"Consumer surveysCAPI, CAWI and\", \"Brand health trackingTrackers \", \"Concept and pack testsBefore m\", \"Focus groupsGroups and in-dept\"",
+    "fix": "give each menu entry its own target (its section, its tab, its page), or show fewer entries",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav-current",
+    "where": "header.nav",
+    "msg": "the nav stays on screen with 4 links to the page's sections, but never marks the one you are in (no link changes as the page scrolls)",
+    "fix": "mark the link of the section on screen (a colour, a weight or a line under it) as the visitor scrolls",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "button-contrast",
+    "where": "div.hero-text.grid > div.hero__text.span-5 > div.btn-row > a.btn.btn--secondary \"See our services\"",
+    "msg": "the button \"See our services\" (#e0e2e1) stands only 1.19:1 off the ground around it: it reads as part of the ground, or as switched off",
+    "fix": "give the button a fill that stands at least 1.5:1 off what is around it, or an outline in the ink",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "action-repeat",
+    "where": "header.nav > div.wrap.nav__bar > div.nav__actions > a.btn.btn--primary \"request a proposal\"",
+    "msg": "\"request a proposal\" shows 2 times on the first screen at 1440px (nav, hero): the nav's button and the hero's; nothing else on the screen may repeat it",
+    "fix": "show the action once a screen besides the nav's button: the hero's, the close's or the phone bar's, never all at once",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "container-edges",
+    "where": "div.wrap.mo-pc__grid > div.mo-pc__text > ol.mo-pc__steps > li.mo-pc__step:nth-of-type(1) \"Questionnaire and sample design We turn \"",
+    "msg": "3 text blocks start on a left line at x 106, 26px from the container's left: text starts on the container's left, or on one split line (x 623, 732, 841) (also \"Fieldwork in 5 countries Our tea\", \"Analysis and debrief Clean data,\") (it is in a scroll scene: told as a WARN) (SR-6)",
+    "fix": "start the text on the container's left, or on the one split line every split shares",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav",
+    "where": "header.nav > div.wrap.nav__bar > button.nav__toggle",
+    "msg": "the nav is lopsided: its last item ends 13px inside the content's edge (366px), while its first starts on the other edge",
+    "fix": "start the nav's first item and end its last on the content's two edges",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "no-visual",
+    "where": "section#services \"Research services\"",
+    "msg": "pictures, effects and mocks cover 23% of this section; a feature section needs a visual (about 25% or more)",
+    "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "cta",
+    "where": "section#services \"Research services\"",
+    "msg": "a section over 1.5 screens long with no link or button in it",
+    "fix": "add the action: a button in the hero, one on every priced item, one in the closing section",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "section-gaps",
+    "where": "section#approach / footer#contact",
+    "msg": "438px between these sections, +25% against the median 350px",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "empty-area",
+    "where": "footer#contact \"Plan your next study with GMC\"",
+    "msg": "41% of the section is empty: 576px of empty rows between its content, 4% beside content that covers under half the container, in its 1544px of rows (WARN over 35%, FAIL over 50%)",
+    "fix": "fill the section: a picture or a second column beside the words, or more of its own content; the section stays one or two screens tall (T-height)",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   }
+  ],
+  "crashed": [],
+  "seconds": {
+   "consistency": 124,
+   "layout": 7
+  }
+ },
+ "open": [],
+ "waived": [
+  {
+   "check": "no-visual",
+   "where": "section#work \"Studies we have run\"",
+   "msg": "pictures, effects and mocks cover 14% of this section; a feature section needs a visual (about 25% or more)",
+   "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits",
+   "widths": [
+    390
+   ],
+   "from": "consistency",
+   "ids": [
+    "no-visual"
+   ],
+   "wheres": [
+    "section#work \"Studies we have run\""
+   ],
+   "reason": "at 390 the band keeps both client photographs; it is two phone screens only because its second group is the industries list, which the photographs cannot share"
+  },
+  {
+   "check": "section-gaps",
+   "where": "main#top > section.hero.hero--split / section#services",
+   "msg": "116px between these sections, -67% against the median 350px",
+   "fix": "use one gap between sections (all within 25% of each other)",
+   "widths": [
+    390
+   ],
+   "from": "consistency",
+   "ids": [
+    "section-gaps"
+   ],
+   "wheres": [
+    "main#top > section.hero.hero--split / section#services"
+   ],
+   "reason": "at 390 the hero ends on its photograph at H - 24 and services starts at the system's --padt: both are the kit's own tokens, no page CSS sets this gap"
+  }
+ ],
+ "warnCount": 27,
+ "at": "2026-11-15T18:10:13.053Z"
+}

@@ -1,0 +1,4 @@
+[
+ { "check": "no-visual", "target": "section#work \"Studies we have run\"", "reason": "at 390 the band keeps both client photographs; it is two phone screens only because its second group is the industries list, which the photographs cannot share" },
+ { "check": "section-gaps", "target": "main#top > section.hero.hero--split / section#services", "reason": "at 390 the hero ends on its photograph at H - 24 and services starts at the system's --padt: both are the kit's own tokens, no page CSS sets this gap" }
+]

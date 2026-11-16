@@ -1,0 +1,290 @@
+consistency  C:\Saad\Projects\GMC\index.html
+
+1440x900  10 screens, 1 held section  0 FAIL  23 WARN
+  WARN scroll-linked   section#house > div.wrap > p.mo-wh__text > span.mo-w:nth-of-type(17)  "for"
+       its colour changes with the scroll and changes back when the scroll goes back (colour), with 1 part inside it, eased after the scroll stops; 10 more parts of this section change with the scroll too (span.mo-w:nth-of-type(18), span.mo-w:nth-of-type(19), span.mo-w:nth-of-type(20), span.mo-w:nth-of-type(21), ...) (inside a dealt moment's section, [data-moment]: expected on every kind, two moments at most, house rule; its still is judged under reduced motion)  [1440-06-scroll-linked.jpg]
+       fix: remove the scroll-driven motion; motion lives inside a visual as a small loop
+  WARN scroll-linked   section#approach > div.wrap.mo-pc__grid  "How a study runs, in 3 steps Questionnai"
+       held on screen for 1 screen of scroll (position: sticky), and 6 parts inside change as the page scrolls through it (colour, opacity, moves): h3, h3, figure.mo-pc__visual:nth-of-type(1), figure.mo-pc__visual:nth-of-type(2), ... (inside a dealt moment's section, [data-moment]: expected on every kind, two moments at most, house rule; its still is judged under reduced motion)  [1440-13-scroll-linked.jpg]
+       fix: remove the scroll-driven motion; motion lives inside a visual as a small loop
+  WARN scroll-reveal   section#house > div.wrap > p.mo-wh__text  "We have run brand trackers for FMCG and "
+       starts "color" (0.2 s) the moment it is scrolled into view (an IntersectionObserver) on span.mo-w:nth-of-type(1) (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)  [1440-07-scroll-reveal.jpg]
+       fix: show it at rest: no fade, rise or unmask when it is scrolled into view
+  WARN scroll-reveal   section#approach  "How a study runs, in 3 steps Questionnai"
+       starts "grid-template-rows" (0.4 s) the moment it is scrolled into view (an IntersectionObserver) on p (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)  [1440-10-scroll-reveal.jpg]
+       fix: show it at rest: no fade, rise or unmask when it is scrolled into view
+  WARN cta             section#work  "Studies we have run"
+       a section over 1.5 screens long with no link or button in it  [1440-08-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#approach  "How a study runs, in 3 steps"
+       a section over 1.5 screens long with no link or button in it  [1440-11-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN copy-headings   div.mo-pc__text > ol.mo-pc__steps > li.mo-pc__step:nth-of-type(3) > h3  "Analysis and debrief"
+       "Analysis and debrief" names no product, part, place or section (the one brand line a page may have)  [1440-12-copy-headings.jpg]
+       fix: name the thing in every heading: the product, a part, the place or a section noun
+  WARN section-gaps    main#top > section.hero.hero--split / section#services
+       177px between these sections, -39% against the median 292px  [1440-04-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN section-gaps    section#work / section#approach
+       418px between these sections, +43% against the median 292px of gaps at a change of ground  [1440-14-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN photo-set       div.grid > article.card.card--row:nth-of-type(2) > div.panel > img.frame__img  "ux-desk-800.webp"
+       6 photographs in more than one look: saturation from 0.08 to 0.41; the odd one out is ux-desk-800.webp  [1440-09-photo-set.jpg]
+       fix: grade the photographs to one look (light, colour, warmth), or replace the odd one out
+  WARN nav-labels      div.nav__menu > div.wrap.grid > div.menu-col.span-3:nth-of-type(1) > a:nth-of-type(1)  "Consumer surveysCAPI, CAWI and online pa"
+       "Consumer surveysCAPI, CAWI and online pa" opens a section headed "Research services"
+       fix: name each nav link after the heading of the section it opens
+  WARN nav-labels      div.nav__menu > div.wrap.grid > div.menu-col.span-3:nth-of-type(1) > a:nth-of-type(2)  "Brand health trackingTrackers that run f"
+       "Brand health trackingTrackers that run f" opens a section headed "Research services"
+       fix: name each nav link after the heading of the section it opens
+  WARN nav-labels      div.nav__menu > div.wrap.grid > div.menu-col.span-3:nth-of-type(1) > a:nth-of-type(3)  "Concept and pack testsBefore money is co"
+       "Concept and pack testsBefore money is co" opens a section headed "Research services"
+       fix: name each nav link after the heading of the section it opens
+  WARN nav-labels      div.nav__menu > div.wrap.grid > div.menu-col.span-3:nth-of-type(2) > a:nth-of-type(1)  "Focus groupsGroups and in-depth intervie"
+       "Focus groupsGroups and in-depth intervie" opens a section headed "Research services"
+       fix: name each nav link after the heading of the section it opens
+  WARN nav-labels      div.nav__menu > div.wrap.grid > div.menu-col.span-3:nth-of-type(2) > a:nth-of-type(2)  "EthnographyShop-alongs and home visits"
+       "EthnographyShop-alongs and home visits" opens a section headed "Research services"
+       fix: name each nav link after the heading of the section it opens
+  WARN nav-labels      div.nav__item:nth-of-type(1) > div.nav__menu > div.wrap.grid > a.menu-card.span-3  "Car clinics Dubai and Riyadh"
+       "Car clinics Dubai and Riyadh" opens a section headed "Studies we have run"
+       fix: name each nav link after the heading of the section it opens
+  WARN nav-labels      div.wrap.nav__bar > nav.nav__links > div.nav__item:nth-of-type(2) > a.nav__link  "Work"
+       "Work" opens a section headed "Studies we have run"  [1440-01-nav-labels.jpg]
+       fix: name each nav link after the heading of the section it opens
+  WARN nav-labels      div.wrap.nav__bar > nav.nav__links > div.nav__item:nth-of-type(3) > a.nav__link  "Approach"
+       "Approach" opens a section headed "How a study runs, in 3 steps"  [1440-02-nav-labels.jpg]
+       fix: name each nav link after the heading of the section it opens
+  WARN nav-labels      div.nav__menu > div.wrap.grid > div.menu-col.span-3:nth-of-type(1) > a:nth-of-type(1)  "Consumer surveysCAPI, CAWI and"
+       6 entries of one menu go to the same place (#services): "Consumer surveysCAPI, CAWI and", "Brand health trackingTrackers ", "Concept and pack testsBefore m", "Focus groupsGroups and in-dept"
+       fix: give each menu entry its own target (its section, its tab, its page), or show fewer entries
+  WARN nav-current     header.nav
+       the nav stays on screen with 4 links to the page's sections, but never marks the one you are in (no link changes as the page scrolls)  [1440-05-nav-current.jpg]
+       fix: mark the link of the section on screen (a colour, a weight or a line under it) as the visitor scrolls
+  WARN button-contrast div.hero-text.grid > div.hero__text.span-5 > div.btn-row > a.btn.btn--secondary  "See our services"
+       the button "See our services" (#e0e2e1) stands only 1.19:1 off the ground around it: it reads as part of the ground, or as switched off  [1440-03-button-contrast.jpg]
+       fix: give the button a fill that stands at least 1.5:1 off what is around it, or an outline in the ink
+  WARN action-repeat   header.nav > div.wrap.nav__bar > div.nav__actions > a.btn.btn--primary  "request a proposal"
+       "request a proposal" shows 2 times on the first screen at 1440px (nav, hero): the nav's button and the hero's; nothing else on the screen may repeat it  [1440-15-action-repeat.jpg]
+       fix: show the action once a screen besides the nav's button: the hero's, the close's or the phone bar's, never all at once
+  WARN container-edges div.wrap.mo-pc__grid > div.mo-pc__text > ol.mo-pc__steps > li.mo-pc__step:nth-of-type(1)  "Questionnaire and sample design We turn "
+       3 text blocks start on a left line at x 106, 26px from the container's left: text starts on the container's left, or on one split line (x 623, 732, 841) (also "Fieldwork in 5 countries Our tea", "Analysis and debrief Clean data,") (it is in a scroll scene: told as a WARN) (SR-6)  [1440-rhythm-01-container-edges.jpg]
+       fix: start the text on the container's left, or on the one split line every split shares
+
+1024x768  10 screens  1 FAIL  11 WARN
+  FAIL section-gaps    main#top > section.hero.hero--split / section#services
+       178px between these sections, -74% against the median 689px  [1024-03-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN scroll-linked   section#house > div.wrap > p.mo-wh__text > span.mo-w:nth-of-type(16)  "studies"
+       its colour changes with the scroll and changes back when the scroll goes back (colour), with 1 part inside it, eased after the scroll stops; 11 more parts of this section change with the scroll too (span.mo-w:nth-of-type(17), span.mo-w:nth-of-type(18), span.mo-w:nth-of-type(19), span.mo-w:nth-of-type(20), ...) (inside a dealt moment's section, [data-moment]: expected on every kind, two moments at most, house rule; its still is judged under reduced motion)  [1024-05-scroll-linked.jpg]
+       fix: remove the scroll-driven motion; motion lives inside a visual as a small loop
+  WARN scroll-linked   section#approach > div.wrap.mo-pc__grid > div.mo-pc__visuals.frame > figure.mo-pc__visual:nth-of-type(1)
+       fades with the scroll and changes back when the scroll goes back (opacity), eased after the scroll stops; 5 more parts of this section change with the scroll too (figure.mo-pc__visual:nth-of-type(2), figure.mo-pc__visual:nth-of-type(3), h3, h3, ...) (inside a dealt moment's section, [data-moment]: expected on every kind, two moments at most, house rule; its still is judged under reduced motion)  [1024-10-scroll-linked.jpg]
+       fix: remove the scroll-driven motion; motion lives inside a visual as a small loop
+  WARN scroll-reveal   section#house > div.wrap > p.mo-wh__text  "We have run brand trackers for FMCG and "
+       starts "color" (0.2 s) the moment it is scrolled into view (an IntersectionObserver) on span.mo-w:nth-of-type(1) (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)  [1024-06-scroll-reveal.jpg]
+       fix: show it at rest: no fade, rise or unmask when it is scrolled into view
+  WARN no-visual       section#work  "Studies we have run"
+       pictures, effects and mocks cover 24% of this section; a feature section needs a visual (about 25% or more)  [1024-07-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  WARN cta             section#work  "Studies we have run"
+       a section over 1.5 screens long with no link or button in it  [1024-08-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#approach  "How a study runs, in 3 steps"
+       a section over 1.5 screens long with no link or button in it  [1024-09-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN orphan          div.grid > div.span-2.footer__col:nth-of-type(3) > ul > li:nth-of-type(1)  "Studies we have run"
+       its last line holds only "run"  [1024-11-orphan.jpg]
+       fix: rebalance the text (text-wrap: pretty, or a shorter line) so the last line holds more than one short word
+  WARN copy-length     h1#hero-h  "Market research for brands across the Gu"
+       a headline of 7 words on 4 lines at 59.3px: a paragraph set in display type  [1024-01-copy-length.jpg]
+       fix: cut the heading to one short line (2 to 12 words) and move the rest into the text under it
+  WARN nav-current     header.nav
+       the nav stays on screen with 4 links to the page's sections, but never marks the one you are in (no link changes as the page scrolls)  [1024-04-nav-current.jpg]
+       fix: mark the link of the section on screen (a colour, a weight or a line under it) as the visitor scrolls
+  WARN button-contrast div.hero-text.grid > div.hero__text.span-5 > div.btn-row > a.btn.btn--secondary  "See our services"
+       the button "See our services" (#e0e2e1) stands only 1.19:1 off the ground around it: it reads as part of the ground, or as switched off  [1024-02-button-contrast.jpg]
+       fix: give the button a fill that stands at least 1.5:1 off what is around it, or an outline in the ink
+  WARN action-repeat   header.nav > div.wrap.nav__bar > div.nav__actions > a.btn.btn--primary  "request a proposal"
+       "request a proposal" shows 2 times on the first screen at 1024px (nav, hero): the nav's button and the hero's; nothing else on the screen may repeat it  [1024-12-action-repeat.jpg]
+       fix: show the action once a screen besides the nav's button: the hero's, the close's or the phone bar's, never all at once
+
+820x1180  10 screens  1 FAIL  13 WARN
+  FAIL section-gaps    section#work / section#approach
+       536px between these sections, +78% against the median 301px of gaps at a change of ground  [820-11-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN nav             header.nav > div.wrap.nav__bar > button.nav__toggle
+       the nav is lopsided: its last item ends 13px inside the content's edge (772px), while its first starts on the other edge  [820-01-nav.jpg]
+       fix: start the nav's first item and end its last on the content's two edges
+  WARN scroll-linked   section#house > div.wrap > p.mo-wh__text > span.mo-w:nth-of-type(14)  "makers,"
+       its colour changes with the scroll and changes back when the scroll goes back (colour), with 1 part inside it, eased after the scroll stops; 13 more parts of this section change with the scroll too (span.mo-w:nth-of-type(15), span.mo-w:nth-of-type(16), span.mo-w:nth-of-type(17), span.mo-w:nth-of-type(18), ...) (inside a dealt moment's section, [data-moment]: expected on every kind, two moments at most, house rule; its still is judged under reduced motion)  [820-06-scroll-linked.jpg]
+       fix: remove the scroll-driven motion; motion lives inside a visual as a small loop
+  WARN scroll-reveal   section#house > div.wrap > p.mo-wh__text  "We have run brand trackers for FMCG and "
+       starts "color" (0.2 s) the moment it is scrolled into view (an IntersectionObserver) on span.mo-w:nth-of-type(1) (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)  [820-07-scroll-reveal.jpg]
+       fix: show it at rest: no fade, rise or unmask when it is scrolled into view
+  WARN no-visual       section#work  "Studies we have run"
+       pictures, effects and mocks cover 22% of this section; a feature section needs a visual (about 25% or more)  [820-08-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  WARN cta             section#services  "Research services"
+       a section over 1.5 screens long with no link or button in it  [820-04-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#work  "Studies we have run"
+       a section over 1.5 screens long with no link or button in it  [820-09-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN section-gaps    main#top > section.hero.hero--split / section#services
+       178px between these sections, -41% against the median 301px  [820-03-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN section-gaps    section#work / section#approach
+       uneven space at the edge of a band: 114px outside its edge, 422px inside it (the space on either side of a change of ground reads as one gap only when the two match)  [820-12-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN button-contrast div.hero-text.grid > div.hero__text.span-5 > div.btn-row > a.btn.btn--secondary  "See our services"
+       the button "See our services" (#e0e2e1) stands only 1.19:1 off the ground around it: it reads as part of the ground, or as switched off  [820-02-button-contrast.jpg]
+       fix: give the button a fill that stands at least 1.5:1 off what is around it, or an outline in the ink
+  WARN empty-area      section#services  "Research services"
+       40% of the section is empty: 880px under its last (figure.frame.frame--photo), in its 2168px of rows (WARN over 35%, FAIL over 50%)  [820-05-empty-area.jpg]
+       fix: fill the section: a picture or a second column beside the words, or more of its own content; the section stays one or two screens tall (T-height)
+  WARN empty-area      section#work  "Studies we have run"
+       35% of the section is empty: 416px of empty rows between its content, 336px under its last (p:nth-of-type(2)), 1% beside content that covers under half the container, in its 2168px of rows (WARN over 35%, FAIL over 50%)  [820-10-empty-area.jpg]
+       fix: fill the section: a picture or a second column beside the words, or more of its own content; the section stays one or two screens tall (T-height)
+  WARN empty-area      footer#contact  "Plan your next study with GMC"
+       38% of the section is empty: 256px of empty rows between its content, 12% beside content that covers under half the container, in its 988px of rows (WARN over 35%, FAIL over 50%)  [820-13-empty-area.jpg]
+       fix: fill the section: a picture or a second column beside the words, or more of its own content; the section stays one or two screens tall (T-height)
+  WARN section-air     section#services  "Research services Consumer surveysCAPI, "
+       the content fills 53.9% of the section's height (1274 of 2360px): 55% or more (40% WARN) (SR-3)  [820-rhythm-01-section-air.jpg]
+       fix: fill the section to 55%: more content, a picture or a background layer, or merge it into the section above as its last block
+
+768x1024  10 screens  3 FAIL  7 WARN
+  FAIL button-styles   footer#contact > div.wrap > div.closing__cta.close--type > a.btn.btn--primary  "Request a proposal"
+       one button style (soft, fill #26b9b2) in 2 heights: 44, 64px ("Request a proposal" 64px, "Request a proposal" 44px)  [768-09-button-styles.jpg]
+       fix: one primary and one secondary button: one shape, one height per size, one label size
+  FAIL same-action     header.nav > div.wrap.nav__bar > div.nav__actions > a.btn.btn--primary  "Request a proposal"
+       "Request a proposal" appears 3 times in different looks: 44px and 64px tall, labels at 16px and 21px  [768-01-same-action.jpg]
+       fix: draw one action the same way everywhere (only the nav copy may be one size smaller)
+  FAIL section-gaps    section#work / section#approach
+       381px between these sections, +65% against the median 231px of gaps at a change of ground  [768-10-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN nav             header.nav > div.wrap.nav__bar > button.nav__toggle
+       the nav is lopsided: its last item ends 13px inside the content's edge (720px), while its first starts on the other edge  [768-02-nav.jpg]
+       fix: start the nav's first item and end its last on the content's two edges
+  WARN scroll-linked   section#house > div.wrap > p.mo-wh__text > span.mo-w:nth-of-type(12)  "luxury"
+       its colour changes with the scroll and changes back when the scroll goes back (colour), with 1 part inside it, eased after the scroll stops; 15 more parts of this section change with the scroll too (span.mo-w:nth-of-type(13), span.mo-w:nth-of-type(14), span.mo-w:nth-of-type(15), span.mo-w:nth-of-type(16), ...) (inside a dealt moment's section, [data-moment]: expected on every kind, two moments at most, house rule; its still is judged under reduced motion)  [768-05-scroll-linked.jpg]
+       fix: remove the scroll-driven motion; motion lives inside a visual as a small loop
+  WARN scroll-reveal   section#house > div.wrap > p.mo-wh__text  "We have run brand trackers for FMCG and "
+       starts "color" (0.2 s) the moment it is scrolled into view (an IntersectionObserver) on span.mo-w:nth-of-type(1) (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)  [768-06-scroll-reveal.jpg]
+       fix: show it at rest: no fade, rise or unmask when it is scrolled into view
+  WARN no-visual       section#work  "Studies we have run"
+       pictures, effects and mocks cover 23% of this section; a feature section needs a visual (about 25% or more)  [768-07-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  WARN cta             section#services  "Research services"
+       a section over 1.5 screens long with no link or button in it  [768-04-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#work  "Studies we have run"
+       a section over 1.5 screens long with no link or button in it  [768-08-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN button-contrast div.hero-text.grid > div.hero__text.span-5 > div.btn-row > a.btn.btn--secondary  "See our services"
+       the button "See our services" (#e0e2e1) stands only 1.19:1 off the ground around it: it reads as part of the ground, or as switched off  [768-03-button-contrast.jpg]
+       fix: give the button a fill that stands at least 1.5:1 off what is around it, or an outline in the ink
+
+390x844  12 screens  3 FAIL  12 WARN
+  FAIL section-gaps    main#top > section.hero.hero--split / section#services
+       116px between these sections, -64% against the median 326px  [390-03-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  FAIL section-gaps    section#approach / footer#contact
+       615px between these sections, +89% against the median 326px  [390-13-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN nav             header.nav > div.wrap.nav__bar > button.nav__toggle
+       the nav is lopsided: its last item ends 13px inside the content's edge (366px), while its first starts on the other edge  [390-01-nav.jpg]
+       fix: start the nav's first item and end its last on the content's two edges
+  WARN scroll-linked   section#house > div.wrap > p.mo-wh__text > span.mo-w:nth-of-type(11)  "for"
+       its colour changes with the scroll and changes back when the scroll goes back (colour), with 1 part inside it, eased after the scroll stops; 18 more parts of this section change with the scroll too (span.mo-w:nth-of-type(12), span.mo-w:nth-of-type(13), span.mo-w:nth-of-type(14), span.mo-w:nth-of-type(15), ...) (inside a dealt moment's section, [data-moment]: expected on every kind, two moments at most, house rule; its still is judged under reduced motion)  [390-06-scroll-linked.jpg]
+       fix: remove the scroll-driven motion; motion lives inside a visual as a small loop
+  WARN scroll-reveal   section#house > div.wrap > p.mo-wh__text  "We have run brand trackers for FMCG and "
+       starts "color" (0.2 s) the moment it is scrolled into view (an IntersectionObserver) on span.mo-w:nth-of-type(1) (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)  [390-07-scroll-reveal.jpg]
+       fix: show it at rest: no fade, rise or unmask when it is scrolled into view
+  WARN no-visual       section#services  "Research services"
+       pictures, effects and mocks cover 23% of this section; a feature section needs a visual (about 25% or more)  [390-04-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  WARN no-visual       section#work  "Studies we have run"
+       pictures, effects and mocks cover 16% of this section; a feature section needs a visual (about 25% or more)  [390-08-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  WARN cta             section#services  "Research services"
+       a section over 1.5 screens long with no link or button in it  [390-05-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#work  "Studies we have run"
+       a section over 1.5 screens long with no link or button in it  [390-09-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#approach  "How a study runs, in 3 steps"
+       a section over 1.5 screens long with no link or button in it  [390-11-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN photo-set       div.grid > article.card.card--row:nth-of-type(2) > div.panel > img.frame__img  "ux-desk-800.webp"
+       6 photographs in more than one look: saturation from 0.09 to 0.43; the odd one out is ux-desk-800.webp  [390-10-photo-set.jpg]
+       fix: grade the photographs to one look (light, colour, warmth), or replace the odd one out
+  WARN button-contrast div.hero-text.grid > div.hero__text.span-5 > div.btn-row > a.btn.btn--secondary  "See our services"
+       the button "See our services" (#e0e2e1) stands only 1.19:1 off the ground around it: it reads as part of the ground, or as switched off  [390-02-button-contrast.jpg]
+       fix: give the button a fill that stands at least 1.5:1 off what is around it, or an outline in the ink
+  WARN empty-area      footer#contact  "Plan your next study with GMC"
+       41% of the section is empty: 576px of empty rows between its content, 4% beside content that covers under half the container, in its 1544px of rows (WARN over 35%, FAIL over 50%)  [390-12-empty-area.jpg]
+       fix: fill the section: a picture or a second column beside the words, or more of its own content; the section stays one or two screens tall (T-height)
+  FAIL section-height  section#work  "Studies we have run Two kinds of work we"
+       the section's content does not fit it: its first screen group ends 835px below its top, past 796px (SR-2)  [390-rhythm-01-section-height.jpg]
+       fix: fit the content above the section's bottom padding (--padb), or make it two screens (.g2) in two groups
+  WARN container-edges div.wrap.mo-pc__grid > div.mo-pc__text > ol.mo-pc__steps > li.mo-pc__step:nth-of-type(1)  "Questionnaire and sample design We turn "
+       12 text blocks start on a left line at x 50, 26px from the container's left: text starts on the container's left, or on one split line (x 177, 207, 238) (also "Questionnaire and sample design", "We turn your decision into a sam", "We turn your decision into a sam") (it is in a scroll scene: told as a WARN) (SR-6)  [390-rhythm-02-container-edges.jpg]
+       fix: start the text on the container's left, or on the one split line every split shares
+
+first screen at 1280, 1152, 896  0 FAIL  0 WARN
+
+the page at 320x640, walked for what runs past the screen's edge  0 FAIL
+
+checks
+  PASS assets                 PASS shader-lint            PASS gl-fallback            
+  PASS empty-visual           PASS hero-fill              PASS flush                  
+  PASS placeholder            PASS sample-label           PASS caption                
+  PASS credit-wall            WARN nav                    PASS nav-covers             
+  PASS spill                  PASS off-viewport           PASS fold-card              
+  PASS hover-spill            PASS overlap-text           PASS collide                
+  PASS tap-size               PASS row-gap                PASS cut-text               
+  PASS fold-cut               PASS marquee                WARN scroll-linked          
+  WARN scroll-reveal          PASS pinned                 PASS loop-pause             
+  PASS reduced-motion         PASS hidden-content         PASS webgl                  
+  WARN no-visual              PASS text-only              PASS card-visual            
+  PASS hidden-visual          PASS card-family            PASS card-layout            
+  PASS nesting                PASS effect-repeat          PASS ui-fit                 
+  PASS ui-centre              PASS dark-ground            FAIL button-styles          
+  PASS button-shape           FAIL same-action            PASS button-picture         
+  WARN cta                    PASS pricing-tiers          PASS copy-headline          
+  PASS copy-fact              WARN copy-headings          PASS copy-buttons           
+  PASS copy-actions           PASS heading-scale          PASS stagger                
+  PASS top-stagger            PASS off-grid               PASS col-edge               
+  PASS right-edge             PASS centre-axis            PASS tilt                   
+  PASS contrast               PASS text-contrast          PASS body-size              
+  PASS busy-ground            FAIL section-gaps           PASS proximity              
+  PASS hole                   PASS links                  PASS forms                  
+  PASS photo-upscale          WARN photo-set              PASS photo-credit           
+  PASS nav-family             WARN nav-labels             PASS link-styles            
+  PASS heading-align          PASS label-centre           PASS fake-button            
+  PASS stranded-action        WARN orphan                 PASS unit-break             
+  PASS tab-wrap               PASS effects-fit            PASS fade-cut               
+  PASS photo-weight           WARN copy-length            WARN nav-current            
+  PASS progress-bar           PASS photo-repeat           WARN button-contrast        
+  PASS photo-print            PASS grounds                PASS split-align            
+  PASS fact-agree             PASS fold-action            PASS action-count           
+  PASS one-screen             PASS hover                  PASS hover-move             
+  PASS product-shown          PASS same-object            PASS font-load              
+  PASS visual-caption         PASS visual-empty           PASS effect-kind            
+  PASS hero-enter             PASS moment-none            PASS street-number          
+  PASS postcode               PASS coordinates            PASS company-number         
+  PASS phone-number           PASS hero-screen            FAIL section-height         
+  WARN section-air            PASS one-section            PASS one-heading            
+  WARN container-edges        PASS row-lines              PASS split-pair             
+  PASS motion-layer           PASS count-text             PASS loop-cycle             
+  PASS section-tile           WARN empty-area             PASS a11y-name              
+  PASS img-alt                PASS field-label            PASS heading-order          
+  PASS tabindex               PASS focus-ring             PASS focus-visible          
+  PASS focus-hidden           PASS skip-link              PASS menu-toggle            
+  PASS lang                   PASS page-meta              PASS share-meta             
+  WARN action-repeat          PASS map-link               PASS open-now               
+  PASS assumed                PASS run-on                 PASS form-fields            
+  PASS form-send              
+
+total  8 FAIL  66 WARN  (crops and report.json in C:\Saad\Projects\GMC\.taste-skill\consistency)

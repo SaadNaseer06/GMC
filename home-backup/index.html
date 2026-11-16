@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>Backup: previous home page | GMC</title>
+    <!-- Backup of the previous long home page, kept for reference. Dev only:
+         not part of the production build (see vite.config.js). -->
+    <meta name="robots" content="noindex">
+    <link rel="canonical" href="https://ghausia-research.ae/">
+    <!-- @include partials/head.html -->
+    <script type="module" src="/src/js/main.js"></script>
+  </head>
+  <body data-page="home" id="top">
+    <!-- @include partials/loader.html -->
+    <p class="backup-note" role="note">Backup of the previous home page, kept for reference. <a href="/">Go to the current home page</a></p>
+    <!-- @include partials/header.html -->
+
+    <main id="main">
+      <section class="hero on-dark" data-hero aria-labelledby="hero-title">
+        <div class="container hero__grid">
+          <div class="hero__copy">
+            <p class="hero__kicker" data-hero-in>Marketing research consultancy in the UAE, Saudi Arabia, Egypt, Pakistan and the USA</p>
+            <h1 class="hero__title" id="hero-title" data-hero-in>
+              <span class="sr-only">Unlock your brand power with strategic recommendations, expert guidance, actionable insights and end-to-end research project execution</span>
+              <span class="hero__static" aria-hidden="true">Unlock your brand power with</span>
+              <span class="rotator" data-rotator aria-hidden="true">
+                <span class="rotator__item is-active"><span>strategic recommendations</span></span>
+                <span class="rotator__item"><span>expert guidance</span></span>
+                <span class="rotator__item"><span>actionable insights</span></span>
+                <span class="rotator__item"><span>end-to-end research project execution</span></span>
+              </span>
+            </h1>
+            <p class="hero__lead" data-hero-in>Comprehensive consulting services tailored to your needs: quantitative, qualitative and UX research, run end to end by experienced researchers.</p>
+            <div class="hero__actions" data-hero-in>
+              <a class="btn btn--primary btn--lg" href="/contact/">Get in touch</a>
+              <a class="btn btn--ghost btn--lg" href="/expertise/">Explore our expertise</a>
+            </div>
+          </div>
+          <div class="hero__brief" data-hero-brief>
+            <!-- @render heroBrief -->
+          </div>
+        </div>
+        <div class="container hero__clients">
+          <!-- @render clientsMarquee -->
+        </div>
+      </section>
+
+      <!-- @include partials/why.html -->
+
+      <section class="section intro" aria-labelledby="intro-title">
+        <div class="container intro__grid">
+          <h2 class="h2 intro__title" id="intro-title">Trusted experts with years of experience and industry accreditations</h2>
+          <div class="intro__body">
+            <p class="lead">At GMC, we are dedicated to guiding you on your growth journey with expertise, integrity and a personalised approach. Our team of experienced research consultants is committed to helping you unlock your full business potential, one step at a time.</p>
+            <p>Our mission is to empower you with the data and insights to make informed decisions, driving customer success and fuelling user growth.</p>
+            <dl class="figures">
+              <div class="figure">
+                <dt class="figure__label">Years of marketing research experience</dt>
+                <dd class="figure__value"><span data-countup="17">17</span>+</dd>
+                <dd class="figure__note">More than a decade of proven data and insights expertise</dd>
+              </div>
+              <div class="figure">
+                <dt class="figure__label">Projects undertaken</dt>
+                <dd class="figure__value"><span data-countup="500">500</span>+</dd>
+                <dd class="figure__note">Catering to almost every industry</dd>
+              </div>
+            </dl>
+            <a class="link-arrow" href="/about/">More about GMC <i data-icon="arrow-right"></i></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section expertise on-dark" id="expertise" aria-labelledby="expertise-title">
+        <div class="container">
+          <div class="section-head section-head--split">
+            <h2 class="h2" id="expertise-title">Types of research projects</h2>
+            <p class="lead">From consumer panels and focus groups to car clinics and market entry studies. Pick one to see how we run it.</p>
+          </div>
+          <!-- @render servicesExplorer -->
+        </div>
+      </section>
+
+      <section class="section industries" id="industries" aria-labelledby="industries-title">
+        <div class="container">
+          <div class="section-head section-head--split">
+            <h2 class="h2" id="industries-title">Extensive experience in diverse industries</h2>
+            <div class="section-head__aside">
+              <p class="lead">Ten sectors, from car makers and airlines to ministries and social research.</p>
+              <a class="link-arrow" href="/industries/">All industries <i data-icon="arrow-right"></i></a>
+            </div>
+          </div>
+          <!-- @render industriesCarousel -->
+        </div>
+      </section>
+
+      <!-- @include partials/offices.html -->
+
+      <!-- @include partials/testimonials.html -->
+
+      <!-- @include partials/contact.html -->
+    </main>
+
+    <!-- @include partials/footer.html -->
+  </body>
+</html>

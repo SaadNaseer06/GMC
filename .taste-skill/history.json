@@ -1,0 +1,21 @@
+{
+  "moments": [
+    {
+      "id": "pinned-chapters",
+      "at": "2026-11-15T17:00:17.824Z",
+      "seed": "82b5162a"
+    },
+    {
+      "id": "word-highlight",
+      "at": "2026-11-15T17:00:17.824Z",
+      "seed": "82b5162a"
+    }
+  ],
+  "palettes": [],
+  "types": [],
+  "dealt": [
+    "work-sans",
+    "source-serif",
+    "manrope"
+  ]
+}

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>Industries | Ghausia Marketing Research Consultancy</title>
+    <meta name="description" content="Research for technology, automotive, food and beverage, fitness, healthcare, banking, hospitality, social research, government and quick service restaurants.">
+    <meta property="og:title" content="Industries | GMC">
+    <meta property="og:description" content="Extensive experience in diverse industries, from car clinics to ministries in KSA, the UAE and Qatar.">
+    <link rel="canonical" href="https://ghausia-research.ae/industries/">
+    <meta property="og:url" content="https://ghausia-research.ae/industries/">
+    <!-- @include partials/head.html -->
+    <script type="module" src="/src/js/main.js"></script>
+  </head>
+  <body data-page="industries" id="top">
+    <!-- @include partials/loader.html -->
+    <!-- @include partials/header.html -->
+
+    <main id="main">
+      <section class="page-hero on-dark" aria-labelledby="page-title">
+        <div class="container page-hero__grid">
+          <div class="page-hero__copy">
+            <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">Industries</li></ol></nav>
+            <h1 class="page-hero__title" id="page-title" data-hero-in>Extensive experience in diverse industries</h1>
+            <p class="lead" data-hero-in>Ten sectors where we have designed and run research, from car clinics for global car makers to studies for ministries in Saudi Arabia, the UAE and Qatar.</p>
+          </div>
+          <div class="mosaic" data-hero-in><!-- @render industriesMosaic --></div>
+        </div>
+      </section>
+
+      <section class="section ind-detail" aria-label="Industries in detail">
+        <div class="container ind-detail__grid">
+          <nav class="ind-index" aria-label="Industries">
+            <p class="ind-index__label">Industries</p>
+            <ul><!-- @render industriesIndex --></ul>
+          </nav>
+          <div class="ind-detail__list">
+            <!-- @render industriesDetail -->
+          </div>
+        </div>
+      </section>
+
+      <!-- @include partials/testimonials.html -->
+
+      <!-- @include partials/contact.html -->
+    </main>
+
+    <!-- @include partials/footer.html -->
+  </body>
+</html>
