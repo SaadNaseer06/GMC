@@ -764,7 +764,7 @@
 /* ======================================================= expertise page */
 .subnav {
   position: sticky;
-  top: calc(var(--header-visible) - var(--utility-h));
+  top: var(--header-visible);
   z-index: 40;
   background: var(--white);
   border-bottom: 1px solid var(--hair);

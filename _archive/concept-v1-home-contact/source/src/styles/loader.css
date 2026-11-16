@@ -1,0 +1,88 @@
+/* Intro loader: transparent GMC mark on dark petrol, drawn in once with a
+   soft silk edge, held, then the same edge sweeps the page open.
+   Shown on every page and every reload (see partials/head.html). */
+
+.loader {
+  display: none;
+}
+
+.has-loader .loader,
+.loader.is-leaving {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  background: var(--petrol-950, #061f23);
+}
+
+/* If scripts never run, step aside on our own */
+.has-loader .loader {
+  animation: loader-failsafe 400ms var(--ease) 7.5s forwards;
+}
+
+@keyframes loader-failsafe {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* Soft silk edge: gradient mask 2.25x the logo width with a feathered band.
+   Starts fully covered on the left, ends fully revealed. */
+.loader__logo {
+  --silk: linear-gradient(90deg, #000 0 44.44%, transparent 55.56% 100%);
+  width: min(286px, 74vw);
+  height: auto;
+  opacity: 1;
+  -webkit-mask: var(--silk) 100% 0 / 225% 100% no-repeat;
+  mask: var(--silk) 100% 0 / 225% 100% no-repeat;
+  filter: blur(7px);
+  transform: translateX(-8px);
+  will-change: mask-position, -webkit-mask-position, filter, transform;
+}
+
+.loader.is-ready .loader__logo {
+  animation: silk-in 2200ms cubic-bezier(0.33, 0.1, 0.2, 1) 120ms forwards;
+}
+
+@keyframes silk-in {
+  65% {
+    filter: blur(0);
+  }
+
+  to {
+    -webkit-mask-position: 0 0;
+    mask-position: 0 0;
+    filter: blur(0);
+    transform: none;
+  }
+}
+
+/* Exit: the same soft edge across the whole screen */
+.loader.is-leaving {
+  --silk-out: linear-gradient(90deg, transparent 0 44.44%, #000 55.56% 100%);
+  -webkit-mask: var(--silk-out) 100% 0 / 225% 100% no-repeat;
+  mask: var(--silk-out) 100% 0 / 225% 100% no-repeat;
+  animation: silk-out 1100ms cubic-bezier(0.65, 0, 0.25, 1) forwards;
+  pointer-events: none;
+}
+
+@keyframes silk-out {
+  to {
+    -webkit-mask-position: 0 0;
+    mask-position: 0 0;
+  }
+}
+
+/* With the loader in play, the hero's fallback reveal waits for it */
+.js.intro [data-hero-in],
+.js.intro [data-hero-brief] {
+  animation-delay: 7.8s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loader {
+    display: none !important;
+  }
+}

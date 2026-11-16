@@ -1,0 +1,41 @@
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header" data-header>
+  <div class="utility">
+    <div class="container utility__inner">
+      <p class="utility__label">Local time in our offices</p>
+      <ul class="clocks" aria-label="Local time in our offices"><!-- @render clockBar --></ul>
+      <div class="utility__links">
+        <a href="mailto:info@ghausia-research.ae"><i data-icon="mail"></i>info@ghausia-research.ae</a>
+        <a href="https://www.linkedin.com/company/ghausia-mr-consultancy/" target="_blank" rel="noopener" aria-label="GMC on LinkedIn (opens in a new tab)"><i data-icon="linkedin"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="navbar">
+    <div class="container navbar__inner">
+      <a class="brand" href="/" data-home aria-label="Ghausia Marketing Research Consultancy, home">
+        <img class="brand__logo" src="/img/gmc-logo-320.png" srcset="/img/gmc-logo-320.png 1x, /img/gmc-logo-640.png 2x" width="320" height="207" alt="">
+      </a>
+      <nav class="nav" aria-label="Main">
+        <ul class="nav__list">
+          <li class="nav__item">
+            <button type="button" class="nav__link nav__trigger" aria-expanded="false" aria-controls="mega-expertise" data-nav="expertise">Expertise<i data-icon="chevron-down" class="nav__chev"></i></button>
+            <div class="mega" id="mega-expertise" hidden data-lenis-prevent><!-- @render megaExpertise --></div>
+          </li>
+          <li class="nav__item">
+            <button type="button" class="nav__link nav__trigger" aria-expanded="false" aria-controls="mega-industries" data-nav="industries">Industries<i data-icon="chevron-down" class="nav__chev"></i></button>
+            <div class="mega" id="mega-industries" hidden data-lenis-prevent><!-- @render megaIndustries --></div>
+          </li>
+          <li class="nav__item"><a class="nav__link" href="/case-studies/" data-nav="case-studies">Case studies</a></li>
+          <li class="nav__item"><a class="nav__link" href="/about/" data-nav="about">About</a></li>
+          <li class="nav__item"><a class="nav__link" href="/#testimonials" data-nav="testimonials" data-home-hash="testimonials">Testimonials</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn--primary navbar__cta" href="/contact/">Get in touch</a>
+      <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+        <i data-icon="menu" class="menu-toggle__open"></i><i data-icon="x" class="menu-toggle__close"></i>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-nav" id="mobile-nav" hidden data-lenis-prevent><!-- @render mobileNav --></div>
+  <div class="mega-scrim" data-scrim hidden></div>
+</header>

@@ -76,35 +76,40 @@ export function initForm() {
     }
     const topic = field('topic');
     if (topic && !topic.value) topic.value = need.services[0];
-    briefBox.querySelector('[data-form-brief-clear]').addEventListener('click', () => {
-      briefBox.hidden = true;
-      briefText = '';
-    });
   }
 
-  /* ---------- from the home page: a research type or an industry ---------- */
-  // "Talk to us about <service>" sends ?topic=<id>; the industry panel sends ?industry=<id>
-  const service = services.find((x) => x.id === params.get('topic'));
-  const industry = industries.find((x) => x.id === params.get('industry'));
+  /* ---------- a research type or an industry ---------- */
+  // Other pages link to /?topic=<id>#contact or /?industry=<id>#contact. On the
+  // home page, links with data-ask-topic / data-ask-industry fill the form in place.
   const topicSelect = field('topic');
-  if (service && topicSelect && !topicSelect.value) topicSelect.value = service.id;
-  if (!need && briefBox && (service || industry)) {
-    // lower-case the first letter only for ordinary words ("Car clinics"), not acronyms ("UI/UX", "NPS")
-    const inSentence = (t) => (/^[A-Z][a-z]/.test(t) ? t.charAt(0).toLowerCase() + t.slice(1) : t);
+  const inSentence = (t) => (/^[A-Z][a-z]/.test(t) ? t.charAt(0).toLowerCase() + t.slice(1) : t);
+  let autoMessage = '';
+  const setContext = (service, industry) => {
+    if (!briefBox || (!service && !industry)) return;
+    if (service && topicSelect) topicSelect.value = service.id;
     briefText = [industry && `Industry: ${industry.title}`, service && `Topic: ${service.title}`].filter(Boolean).join('. ');
     briefBox.querySelector('[data-form-brief-text]').textContent = briefText;
     briefBox.hidden = false;
     const message = field('message');
-    if (!message.value) {
-      message.value = service
-        ? `Hello GMC, we would like to talk to you about ${inSentence(service.title)}. `
-        : `Hello GMC, we would like to discuss a research project in ${industry.title}. `;
+    const text = service
+      ? `Hello GMC, we would like to talk to you about ${inSentence(service.title)}. `
+      : `Hello GMC, we would like to discuss a research project in ${industry.title}. `;
+    if (!message.value || message.value === autoMessage) {
+      message.value = text;
+      autoMessage = text;
     }
-    briefBox.querySelector('[data-form-brief-clear]').addEventListener('click', () => {
-      briefBox.hidden = true;
-      briefText = '';
-    });
+  };
+  if (!need) {
+    setContext(services.find((x) => x.id === params.get('topic')), industries.find((x) => x.id === params.get('industry')));
   }
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('[data-ask-topic], [data-ask-industry]');
+    if (a) setContext(services.find((x) => x.id === a.dataset.askTopic), industries.find((x) => x.id === a.dataset.askIndustry));
+  });
+  briefBox?.querySelector('[data-form-brief-clear]')?.addEventListener('click', () => {
+    briefBox.hidden = true;
+    briefText = '';
+  });
 
   const say = (html, kind = 'ok') => {
     status.classList.toggle('is-error', kind === 'error');

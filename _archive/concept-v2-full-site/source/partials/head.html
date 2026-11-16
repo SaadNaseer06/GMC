@@ -1,0 +1,35 @@
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0B2E32">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Ghausia Marketing Research Consultancy">
+    <meta property="og:image" content="https://ghausia-research.ae/img/share.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <script>
+      // Runs before the page paints. The intro loader shows on every page and
+      // every reload, unless the visitor prefers reduced motion. "intro" stays
+      // on to time the hero entrance after the loader exits.
+      (function (d) {
+        d.classList.replace('no-js', 'js');
+        try {
+          if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            d.classList.add('has-loader', 'intro');
+          }
+        } catch (e) {}
+      })(document.documentElement);
+    </script>
+    <style>
+      /* First-paint safety: the page ground and the loader exist before the
+         stylesheet arrives, so nothing unstyled ever flashes. */
+      html, body { margin: 0; background: #0b2e32; }
+      .loader { display: none; }
+      html.has-loader .loader {
+        position: fixed; inset: 0; z-index: 200; display: grid; place-items: center;
+        background: #061f23;
+      }
+      .loader__logo { width: min(286px, 74vw); height: auto; opacity: 0; }
+    </style>
+    <link rel="preload" as="image" href="/img/gmc-logo-320.png" imagesrcset="/img/gmc-logo-320.png 1x, /img/gmc-logo-640.png 2x" type="image/png">
+    <!-- Render-blocking on purpose: the page paints styled or not at all -->
+    <link rel="stylesheet" href="/src/styles/main.css">

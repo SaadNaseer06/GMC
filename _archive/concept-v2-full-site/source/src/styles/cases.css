@@ -1,0 +1,566 @@
+/* ============================================= case studies (page + home) */
+
+/* ---- page hero: numbered index of the cases on the page */
+@media (min-width: 1024px) {
+  .cases-hero__grid {
+    grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
+    align-items: end;
+  }
+}
+
+.case-index ol {
+  border-top: 1px solid var(--hair);
+}
+
+.case-index__link {
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 4px;
+  border-bottom: 1px solid var(--hair);
+  color: var(--fg);
+  transition: background-color var(--t-fast) var(--ease);
+}
+
+.case-index__num {
+  font-size: var(--fs-xs);
+  font-variant-numeric: tabular-nums;
+  color: var(--fg-3);
+}
+
+.case-index__text {
+  display: grid;
+  gap: 2px;
+}
+
+.case-index__sector {
+  font-size: var(--fs-xs);
+  color: var(--link);
+}
+
+.case-index__title {
+  font-size: var(--fs-small);
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.case-index__link .icon {
+  width: 18px;
+  height: 18px;
+  color: var(--fg-3);
+  transition: transform var(--t) var(--ease), color var(--t-fast) var(--ease);
+}
+
+.case-index__link:hover {
+  background: var(--ghost-hover);
+}
+
+.case-index__link:hover .icon {
+  color: var(--link);
+  transform: translateY(3px);
+}
+
+/* ---- sticky filter bar */
+html:has(body[data-page='case-studies']) {
+  scroll-padding-top: calc(var(--nav-h-compact) + 96px);
+}
+
+.case-filter {
+  position: sticky;
+  top: var(--header-visible);
+  z-index: 40;
+  background: var(--white);
+  border-bottom: 1px solid var(--hair);
+  transition: top 360ms var(--ease);
+}
+
+.case-filter__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 20px;
+  padding-block: 12px;
+}
+
+.case-filter__label,
+.case-filter__count {
+  font-size: var(--fs-xs);
+  color: var(--fg-3);
+}
+
+.case-filter__chips {
+  display: flex;
+  gap: 8px;
+  min-width: 0;
+}
+
+.case-filter__count {
+  margin-left: auto;
+}
+
+@media (max-width: 899px) {
+  .case-filter__inner {
+    flex-wrap: nowrap;
+  }
+
+  .case-filter__label,
+  .case-filter__count {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .case-filter__chips {
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin-inline: calc(-1 * var(--gutter));
+    padding-inline: var(--gutter);
+  }
+
+  .case-filter__chips::-webkit-scrollbar {
+    display: none;
+  }
+
+  .case-filter__chips .chip {
+    flex: none;
+    white-space: nowrap;
+  }
+}
+
+/* ---- one case */
+.cases {
+  padding-top: clamp(56px, 6vw, 88px);
+}
+
+.case {
+  display: grid;
+  gap: clamp(28px, 3vw, 44px);
+  padding-bottom: clamp(64px, 7vw, 112px);
+  margin-bottom: clamp(64px, 7vw, 112px);
+  border-bottom: 1px solid var(--hair);
+}
+
+.case.is-last {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.case.is-entering {
+  animation: case-in var(--t-slow) var(--ease) both;
+}
+
+@keyframes case-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case.is-entering {
+    animation: none;
+  }
+}
+
+.case__head {
+  display: grid;
+  gap: 16px;
+}
+
+@media (min-width: 960px) {
+  .case__head {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    grid-template-rows: auto 1fr;
+    column-gap: clamp(40px, 6vw, 96px);
+  }
+
+  .case__facts {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: end;
+  }
+}
+
+.case__num {
+  font-size: var(--fs-small);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--teal-700);
+}
+
+.case__title {
+  max-width: 19ch;
+  font-size: clamp(1.875rem, 1.3rem + 2vw, 3rem);
+  line-height: 1.06;
+  letter-spacing: -0.028em;
+}
+
+.case__facts > div {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 1fr);
+  gap: 16px;
+  padding-block: 12px;
+  border-top: 1px solid var(--hair);
+}
+
+.case__facts > div:last-child {
+  border-bottom: 1px solid var(--hair);
+}
+
+.case__facts dt {
+  font-size: var(--fs-xs);
+  line-height: 1.6;
+  color: var(--fg-3);
+}
+
+.case__facts dd {
+  font-size: var(--fs-small);
+  line-height: 1.45;
+}
+
+/* The photo sits out of flow, so its own proportions never stretch the crop */
+.case__media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--r-lg);
+  background: var(--mist-2);
+}
+
+@media (min-width: 640px) {
+  .case__media {
+    aspect-ratio: 21 / 9;
+  }
+}
+
+.case__media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.case__story {
+  display: grid;
+  gap: 28px;
+  counter-reset: story;
+}
+
+@media (min-width: 900px) {
+  .case__story {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(28px, 3.5vw, 56px);
+  }
+}
+
+.case__story li {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 2px solid var(--fg);
+  counter-increment: story;
+}
+
+.case__story li:not(:first-child) {
+  border-top-color: var(--hair-strong);
+}
+
+.case__story h3 {
+  display: flex;
+  gap: 10px;
+  font-size: 1.125rem;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.case__story h3::before {
+  content: counter(story, decimal-leading-zero);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  line-height: 1.6rem;
+  color: var(--teal-700);
+  font-variant-numeric: tabular-nums;
+}
+
+.case__story p {
+  color: var(--fg-2);
+  line-height: 1.6;
+}
+
+.case__quote {
+  display: grid;
+  gap: 16px;
+  padding: clamp(24px, 3.2vw, 44px);
+  border-radius: var(--r-lg);
+  background: var(--mist);
+}
+
+.case__quote p {
+  max-width: 44em;
+  font-size: var(--fs-lead);
+  line-height: 1.5;
+}
+
+.case__quote p::before {
+  content: '\201C';
+}
+
+.case__quote p::after {
+  content: '\201D';
+}
+
+.case__quote footer {
+  font-size: var(--fs-small);
+  color: var(--fg-2);
+}
+
+.case__quote strong {
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.case__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.case__used-label {
+  margin-bottom: 10px;
+  font-size: var(--fs-xs);
+  color: var(--fg-3);
+}
+
+.tags--links li {
+  padding: 0;
+  transition: border-color var(--t-fast) var(--ease);
+}
+
+.tags--links a {
+  display: block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  transition: color var(--t-fast) var(--ease);
+}
+
+.tags--links li:hover {
+  border-color: var(--fg);
+}
+
+.tags--links a:hover {
+  color: var(--fg);
+}
+
+@media (max-width: 599px) {
+  .case__foot .btn {
+    width: 100%;
+  }
+}
+
+/* ---- closing call to action */
+.cases-cta__grid {
+  display: grid;
+  gap: 24px;
+}
+
+@media (min-width: 960px) {
+  .cases-cta__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: end;
+    gap: clamp(32px, 6vw, 96px);
+  }
+}
+
+.cases-cta__aside {
+  display: grid;
+  gap: 28px;
+}
+
+.cases-cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+@media (max-width: 599px) {
+  .cases-cta__actions .btn {
+    flex: 1 1 auto;
+  }
+}
+
+/* ---- home: selected case studies */
+.work {
+  background: var(--mist);
+}
+
+.case-cards {
+  display: grid;
+  gap: clamp(24px, 2.5vw, 36px);
+}
+
+@media (min-width: 960px) {
+  .case-cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 959px) {
+  .case-cards {
+    grid-auto-flow: column;
+    grid-auto-columns: min(78%, 400px);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    scrollbar-width: none;
+    margin-inline: calc(-1 * var(--gutter));
+    padding-inline: var(--gutter);
+  }
+
+  .case-cards::-webkit-scrollbar {
+    display: none;
+  }
+
+  .case-card {
+    scroll-snap-align: start;
+  }
+}
+
+.case-card__link {
+  display: grid;
+  gap: 8px;
+  height: 100%;
+  align-content: start;
+  border-radius: var(--r-md);
+}
+
+.case-card__media {
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  margin-bottom: 12px;
+  border-radius: var(--r-md);
+  background: var(--mist-2);
+}
+
+.case-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 900ms var(--ease);
+}
+
+.case-card__link:hover .case-card__media img {
+  transform: scale(1.04);
+}
+
+.case-card__sector {
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  color: var(--teal-700);
+}
+
+.case-card__title {
+  font-size: 1.3125rem;
+  font-weight: 600;
+  line-height: 1.22;
+  letter-spacing: -0.014em;
+}
+
+.case-card__link:hover .case-card__title {
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 4px;
+}
+
+.case-card__text {
+  font-size: var(--fs-small);
+  line-height: 1.5;
+  color: var(--fg-2);
+}
+
+.case-card__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  font-size: var(--fs-small);
+  font-weight: 500;
+}
+
+.case-card__more .icon {
+  width: 16px;
+  height: 16px;
+  transition: transform var(--t) var(--ease);
+}
+
+.case-card__link:hover .case-card__more .icon {
+  transform: translateX(3px);
+}
+
+/* ---- home: plan a study */
+.plan__grid {
+  display: grid;
+  gap: clamp(40px, 5vw, 72px);
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .plan__grid {
+    grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+  }
+
+  .plan__brief {
+    justify-self: end;
+    width: 100%;
+    max-width: 520px;
+  }
+}
+
+.plan__copy {
+  display: grid;
+  gap: 24px;
+  justify-items: start;
+}
+
+.plan__copy .lead {
+  max-width: 34em;
+}
+
+.plan__steps {
+  width: 100%;
+  max-width: 34em;
+  margin-top: 8px;
+  border-top: 1px solid var(--hair);
+}
+
+.plan__steps li {
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr);
+  gap: 12px;
+  padding-block: 14px;
+  border-bottom: 1px solid var(--hair);
+  color: var(--fg);
+}
+
+.plan__steps span {
+  font-size: var(--fs-xs);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.7rem;
+  color: var(--link);
+}
+
+/* On narrow screens the card itself sits right below, so the steps would repeat it */
+@media (max-width: 1023px) {
+  .plan__steps {
+    display: none;
+  }
+}

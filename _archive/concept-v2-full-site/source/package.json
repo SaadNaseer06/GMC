@@ -1,0 +1,26 @@
+{
+  "name": "gmc-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 4173",
+    "images": "node tools/prep-images.mjs",
+    "map": "node tools/build-map.mjs",
+    "logo": "node tools/trace-logo.mjs",
+    "loader-art": "node tools/loader-art.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/schibsted-grotesk": "5.3.0",
+    "gsap": "3.15.0",
+    "lenis": "1.3.26"
+  },
+  "devDependencies": {
+    "dotted-map": "3.1.0",
+    "lucide-static": "1.59.0",
+    "potrace": "2.1.8",
+    "sharp": "^0.34.5",
+    "vite": "^6.4.6"
+  }
+}

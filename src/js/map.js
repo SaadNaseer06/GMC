@@ -10,12 +10,12 @@ export function initMap() {
     const parts = (id) => [
       map.querySelector(`.map__pin[data-office="${id}"]`),
       map.querySelector(`.map__label[data-office="${id}"]`),
-      section.querySelector(`.office[data-office="${id}"]`),
+      section.querySelector(`.office[data-office="${id}"], [data-office-card][data-office="${id}"]`),
     ].filter(Boolean);
 
     const set = (id, on) => parts(id).forEach((el) => el.classList.toggle('is-active', on));
 
-    section.querySelectorAll('.office[data-office], .map__label[data-office]').forEach((el) => {
+    section.querySelectorAll('.office[data-office], [data-office-card], .map__label[data-office]').forEach((el) => {
       const id = el.dataset.office;
       el.addEventListener('pointerenter', () => set(id, true));
       el.addEventListener('pointerleave', () => set(id, false));

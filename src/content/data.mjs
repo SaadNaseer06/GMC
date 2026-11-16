@@ -62,9 +62,9 @@ export const services = [
   },
   {
     id: 'brand-health-tracking', group: 'quant', title: 'Brand health tracking',
-    short: 'Trackers for FMCG and tobacco brands',
-    body: 'We have conducted numerous brand health tracking studies for clients in the FMCG and tobacco industries, offering insights that enhance brand performance and consumer satisfaction.',
-    methods: ['FMCG', 'Tobacco', 'Continuous tracking'],
+    short: 'Trackers for FMCG and consumer brands',
+    body: 'We have conducted numerous brand health tracking studies for FMCG clients, offering insights that enhance brand performance and consumer satisfaction.',
+    methods: ['FMCG', 'Consumer brands', 'Continuous tracking'],
     image: 'brand-dashboard', alt: 'Analytics dashboard open on a laptop',
   },
   {

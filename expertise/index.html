@@ -3,71 +3,43 @@
   <head>
     <meta charset="utf-8">
     <title>Expertise | Ghausia Marketing Research Consultancy</title>
-    <meta name="description" content="Quantitative research, qualitative research, UI/UX research, car clinics, brand health and NPS tracking, concept, product and pack tests, segmentation, market entry and competitive intelligence.">
+    <meta name="description" content="Fourteen types of research GMC designs and runs: quantitative, qualitative and UI/UX research, car clinics, brand health and NPS tracking, concept, product and pack tests, and market entry studies.">
     <meta property="og:title" content="Expertise | GMC">
-    <meta property="og:description" content="Fourteen types of research projects, designed and delivered end to end.">
+    <meta property="og:description" content="A trusted source for marketing research expertise, from consumer panels and focus groups to car clinics and market entry studies.">
     <link rel="canonical" href="https://ghausia-research.ae/expertise/">
     <meta property="og:url" content="https://ghausia-research.ae/expertise/">
     <!-- @include partials/head.html -->
     <script type="module" src="/src/js/main.js"></script>
   </head>
-  <body data-page="expertise" id="top">
+  <body data-page="expertise" class="v3" id="top">
     <!-- @include partials/loader.html -->
     <!-- @include partials/header.html -->
 
     <main id="main">
-      <section class="page-hero on-dark" aria-labelledby="page-title">
-        <div class="container page-hero__grid">
-          <div class="page-hero__copy">
-            <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">Expertise</li></ol></nav>
-            <h1 class="page-hero__title" id="page-title" data-hero-in>Trusted source for marketing expertise</h1>
-            <p class="lead" data-hero-in>Fourteen types of research projects, from consumer panels and focus groups to car clinics and market entry studies, designed and delivered end to end.</p>
-          </div>
-          <nav class="page-index" aria-label="Expertise groups" data-hero-in>
-            <p class="page-index__label">Jump to</p>
-            <ul><!-- @render expertiseIndex --></ul>
-          </nav>
+      <section class="vpage-hero on-dark" aria-labelledby="page-title">
+        <div class="vpage-hero__dots" aria-hidden="true"></div>
+        <div class="container vpage-hero__inner">
+          <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">Expertise</li></ol></nav>
+          <p class="vtag" data-hero-in><span class="vslash" aria-hidden="true"></span>Expertise</p>
+          <h1 class="vpage-hero__title" id="page-title" data-hero-in>Trusted source for <em>marketing expertise</em></h1>
         </div>
       </section>
 
-      <nav class="subnav" aria-label="Expertise sections" data-subnav>
-        <div class="container"><ul class="subnav__list"><!-- @render expertiseSubnav --></ul></div>
-      </nav>
-
-      <!-- @render expertiseGroups -->
-
-      <section class="section process on-dark" aria-labelledby="process-title">
+      <section class="section vexpertise" aria-labelledby="expertise-title">
         <div class="container">
-          <div class="section-head section-head--split">
-            <h2 class="h2" id="process-title">How a project runs</h2>
-            <p class="lead">We take full ownership from inception to completion, and stay on as your strategic partner afterwards.</p>
+          <div class="vhead vhead--center">
+            <h2 class="vtitle vtitle--swoosh" id="expertise-title">Our <em>expertise</em></h2>
+            <p class="lead">Fourteen types of research, designed and run end to end by experienced researchers.</p>
           </div>
-          <ol class="steps">
-            <li class="step">
-              <span class="step__num">1</span>
-              <h3 class="step__title">Brief and research design</h3>
-              <p>We start from your business question and design the method, sample and questionnaire or discussion guide around it.</p>
-            </li>
-            <li class="step">
-              <span class="step__num">2</span>
-              <h3 class="step__title">Fieldwork</h3>
-              <p>Fieldwork runs through our offices and trusted field partners in each market, with the highest standards of data integrity.</p>
-            </li>
-            <li class="step">
-              <span class="step__num">3</span>
-              <h3 class="step__title">Analysis and reporting</h3>
-              <p>We analyse every dataset and transcript in detail, down to the differences between consumer segments.</p>
-            </li>
-            <li class="step">
-              <span class="step__num">4</span>
-              <h3 class="step__title">Recommendations and support</h3>
-              <p>We craft strategies and recommendations grounded in the insights, with continuous support and guidance after the debrief.</p>
-            </li>
-          </ol>
+          <div class="vfilter vfilter--center" role="group" aria-label="Show research types"><!-- @render researchFilters --></div>
+          <ul class="vchecks" data-vlist><!-- @render expertiseChecklist --></ul>
+          <p class="sr-only" data-vcount aria-live="polite"></p>
         </div>
       </section>
 
-      <!-- @include partials/contact.html -->
+      <!-- @include partials/banner.html -->
+
+      <!-- @include partials/testimonials.html -->
     </main>
 
     <!-- @include partials/footer.html -->

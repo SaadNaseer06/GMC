@@ -2,18 +2,16 @@
 
 Revamp of [ghausia-research.ae](https://ghausia-research.ae) as a fast static site. Content comes from the live site; layout and interaction take their cue from Kantar, Ipsos and NielsenIQ.
 
-## Current scope: homepage concept for the client
+## Current scope: version 3, the live site's layout redesigned
 
-Only **Home** (`/`) and **Contact** (`/contact/`) are built and linked. Everything in the navigation points into the home page:
+The site follows ghausia-research.ae page for page and section for section, redesigned:
 
-- Expertise menu → `/#service-<id>` selects that research type in the explorer
-- Industries menu and the carousel cards → open a detail panel with the full industry write-up (`/#industry-<id>` opens it directly)
-- About → the intro section (`/#about`), Testimonials → `/#testimonials`
-- "Talk to us about …" in the explorer and "Discuss a project" in the industry panel open the contact form with the topic or industry filled in (`/contact/?topic=<id>`, `/contact/?industry=<id>`)
+- **Pages:** Home, About us (`/about/`), Expertise (`/expertise/`), Industries (`/industries/`). The menu matches the live site: Home, About us, Expertise, Industries, Testimonials, plus a Contact us button. The contact form sits on the home page (`/#contact`), as on the live site.
+- **Home, in the live order:** full-screen photo slideshow with the rotating headline → Why choose us (three alternating rows, each with a live detail: office clocks and your own time, the cost comparison, the project steps) → "Insights-infused discovery, shaping tomorrow" banner → Trusted experts with 17+ / 500+ → Established in 5 countries (dotted map with office pins, routes and live times, plus a flag card per office with day or night) → the 14 types of research as a numbered index (rows open in place, a photo follows the pointer on desktop, filter by type; "Discuss this study" fills in the contact form) → Those who trust us → contact form → footer with the slanted "On-sumers" band, sitemap and the five office addresses.
+- **Inner pages:** page banner with GMC's teal slash and dot grid → content (About: intro and the four principles; Expertise: the 14 research types with check marks and filters; Industries: ten cards, tobacco removed) → banner → testimonials → footer.
+- Photos are GMC's own, from the live site (`source-images/live`), including the jigsaw map, skyline, desk, lens and team photos.
 
-The about/, expertise/ and industries/ pages and home-backup/ stay in the project (they open in development) but are left out of the build. To publish them again, add them back to `pages` in `vite.config.js` and point the links back at them.
-
-Full-page images for sharing are in `mockups/` (home on desktop and phone, contact on desktop), captured with motion off so they show the settled design.
+Earlier concepts are archived: `_archive/concept-v1-home-contact/` (Home + Contact mockup) and `_archive/concept-v2-full-site/` (full site with case studies). `contact/`, `case-studies/`, `home-backup/` and `lean/` still open in development but are not built.
 
 ## Commands
 
@@ -30,11 +28,12 @@ npm run map       # regenerate the dotted office map
 
 | Path | What it holds |
 | --- | --- |
-| `index.html`, `about/`, `expertise/`, `industries/`, `contact/` | One folder per page, so URLs are clean (`/about/`). The home page uses the lean layout (`src/styles/lean.css`, scoped to `body.is-lean`) |
-| `home-backup/` | The previous long home page (with the "Plan a study" card and time-zone chart), kept for reference at `/home-backup/` in development. Not part of the production build |
+| `index.html`, `about/`, `expertise/`, `industries/`, `case-studies/`, `contact/` | One folder per page, so URLs are clean (`/about/`). The home page uses the lean layout (`src/styles/lean.css`, scoped to `body.is-lean`) |
+| `home-backup/` | The previous long home page (with the time-zone chart), kept for reference at `/home-backup/` in development. Not part of the production build |
 | `lean/` | Redirects the old `/lean/` preview address to `/`. Development only |
 | `partials/` | Header, footer and shared sections, pulled in with `<!-- @include partials/x.html -->` |
 | `src/content/data.mjs` | **All content**: services, industries, testimonials, offices, client names |
+| `src/content/cases.mjs` | The six case studies. Drafted only from what the live site already says (see "Content to confirm") |
 | `src/content/render.mjs` | Turns that data into HTML at build time (`<!-- @render name -->`) |
 | `src/styles/` | Design tokens (`tokens.css`) and component styles |
 | `src/js/` | One small module per interaction (see below) |
@@ -48,7 +47,9 @@ To change a service, industry, testimonial or office address, edit `src/content/
 - Intro loader: transparent GMC mark on dark petrol, drawn in once with a soft silk edge, held, then the same edge sweeps the page open. Shows on every page and every reload; skip with click, key or scroll; off for reduced motion. It uses the same high-resolution logo as the header (`static/img/gmc-logo-320.png` and `gmc-logo-640.png`), so it stays sharp on high-density screens. Markup in `partials/loader.html`, styles in `src/styles/loader.css`, timing in `src/js/loader.js`.
 - Header: live local time for all five offices, mega menus (hover, click, Escape), hides on scroll down
 - Home hero: the live site's rotating headline over a photograph, with the four key figures (17+ years, 500+ projects, 5 countries, ≈30% lower cost) counting up as the intro loader hands over
-- Backup home only (`/home-backup/`): a two-question "Plan a study" card that builds a brief and pre-fills the contact form, and a chart of each office's working day against the visitor's own time zone (also used on the About page)
+- Home: a two-question "Plan a study" card that builds a brief (suggested studies, nearest offices with live time) and pre-fills the contact form
+- Case studies: numbered index in the hero, a sticky filter by research type (deep links clear the filter so they always land), and a contact link per case
+- Backup home only (`/home-backup/`): a chart of each office's working day against the visitor's own time zone (also used on the About page)
 - Explorer: 14 research types with filters and a preview panel (arrow keys work)
 - Industries carousel with drag, buttons and progress
 - Dotted map with office pins, connected routes and live clocks
@@ -66,7 +67,7 @@ Import the project in Vercel; `vercel.json` sets the build (`npm run build`, out
 - sends a few security headers
 - sends `X-Robots-Tag: noindex` while this is a client concept, so the copy of the live site's content is not indexed. **Remove that header at launch**, together with nothing else: `static/robots.txt` and `static/sitemap.xml` are already set up for ghausia-research.ae.
 
-Lighthouse on the production build (home page): performance 98 mobile / 100 desktop, accessibility, best practices and SEO 100. The intro loader plays on every page load and covers the page for about 4 seconds; visitors feel that wait even though the page itself is ready sooner.
+Lighthouse on the production build (version 3 home page, mobile): performance 97, accessibility, best practices and SEO 100.
 
 ## Before going live
 
@@ -75,7 +76,7 @@ Lighthouse on the production build (home page): performance 98 mobile / 100 desk
    - `/about-us/` → `/about/`
    - `/experties/` and `/beta/experties/` → `/expertise/`
    - `/industries-2/` → `/industries/`
-   - `/case-studies/`, `/insights/`, `/media-mentions/`, `/category/insights/*` → `/` (these held template placeholder content, not GMC content, and were not migrated)
+   - `/insights/`, `/media-mentions/`, `/category/insights/*` → `/` (these held template placeholder content, not GMC content, and were not migrated). `/case-studies/` keeps its address and now holds real GMC case studies
 3. **Hosting.** Upload `dist/` to any static host. Paths are root-relative, so serve it from the domain root.
 
 ## Content to confirm with GMC
@@ -83,6 +84,7 @@ Lighthouse on the production build (home page): performance 98 mobile / 100 desk
 - **Cost saving:** the live home page and meta description say approximately 30%, while the About page says 20%. The new site uses 30% throughout.
 - **Testimonials:** spelling and grammar lightly corrected (for example "There insights" became "Their insights").
 - **Client names** (Dunkin', Aldar, Emirates, Land Rover and others) are shown as plain text, as named on the live site. Check the client is happy to list them.
+- **Case studies** (`src/content/cases.mjs`) are drafted only from claims already on the live site: car clinics in Dubai and KSA, ministries in KSA, the UAE and Qatar (Hajj and Umrah, FIFA World Cup 2022, DEWA, Happiness Centres), QSR growth work and the Dunkin' testimonial, Emirates, Etihad Airways and dnata, banking studies, and HIV and respiratory research. They contain no figures. Ask GMC to confirm each story, add results they can share (numbers, sample sizes, countries), and say which client names may appear.
 - **Office hours** in the time-zone chart are assumed to be 09:00–18:00 local time.
 - **Logo:** the header and footer use GMC's high-resolution logo (`source-images/brand/gmc-logo-hires.png`, 1619px), exported as `static/img/gmc-logo-320.png` and `gmc-logo-640.png` (for high-density screens). An original vector file (`.svg`, `.ai`, `.eps`) is still worth asking GMC for, for print and very large uses.
 - The live site's email link points to `Info@ghausia-Rresearch.ae` (a typo). The new site uses `info@ghausia-research.ae`.

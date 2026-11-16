@@ -3,13 +3,16 @@ import { fileURLToPath } from 'node:url';
 import site, { fontPreload } from './tools/vite-plugin-site.mjs';
 
 // Each page lives in its own folder so URLs stay clean: /about/, /expertise/ ...
-// Client mockup: only Home and Contact are built. about/, expertise/,
-// industries/ and home-backup/ stay in the project (and open in development)
-// but are left out of the build until they are needed again. Add them back
-// here to publish them. lean/ only redirects the old preview address to /.
+// Version 3: the live site's pages and layout (Home, About us, Expertise,
+// Industries), redesigned. The contact form is on the home page (/#contact),
+// as on the live site. Earlier concepts are archived in _archive/. contact/,
+// case-studies/, home-backup/ and lean/ stay in the project (development
+// only) but are left out of the build.
 const pages = {
   index: 'index.html',
-  contact: 'contact/index.html',
+  about: 'about/index.html',
+  expertise: 'expertise/index.html',
+  industries: 'industries/index.html',
 };
 const root = fileURLToPath(new URL('.', import.meta.url));
 

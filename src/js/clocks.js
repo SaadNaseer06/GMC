@@ -3,7 +3,8 @@ const formats = new Map();
 
 function format(tz) {
   if (!formats.has(tz)) {
-    formats.set(tz, new Intl.DateTimeFormat('en-GB', { timeZone: tz, hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }));
+    // data-clock="local" shows the visitor's own time
+    formats.set(tz, new Intl.DateTimeFormat('en-GB', { timeZone: tz === 'local' ? undefined : tz, hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }));
   }
   return formats.get(tz);
 }

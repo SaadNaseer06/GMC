@@ -1,20 +1,37 @@
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer__top">
+<footer class="site-footer v-footer on-dark">
+  <div class="container v-footer__band">
+    <span class="v-footer__slash" aria-hidden="true"></span>
+    <p class="v-footer__tagline">Understanding “On‑sumers”, inspiring growth</p>
+    <a class="btn btn--primary v-footer__cta" href="/#contact">Contact us <i data-icon="arrow-right"></i></a>
+  </div>
+  <div class="container v-footer__main">
+    <div class="v-footer__brand">
       <a class="brand brand--footer" href="/" data-home aria-label="Ghausia Marketing Research Consultancy, home">
         <img class="brand__logo" src="/img/gmc-logo-320.png" srcset="/img/gmc-logo-320.png 1x, /img/gmc-logo-640.png 2x" width="320" height="207" alt="" loading="lazy">
       </a>
-      <p class="footer__tagline">Understanding “On‑sumers”, inspiring growth</p>
-      <a class="btn btn--primary btn--lg" href="/contact/">Get in touch</a>
-    </div>
-    <div class="footer__cols"><!-- @render footerColumns --></div>
-    <div class="footer__bottom">
-      <p>© <span data-year><!-- @render year --></span> Ghausia Research Inc.</p>
-      <ul class="footer__meta">
-        <li><a href="mailto:info@ghausia-research.ae">info@ghausia-research.ae</a></li>
-        <li><a href="https://www.linkedin.com/company/ghausia-mr-consultancy/" target="_blank" rel="noopener">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a></li>
+      <p class="v-footer__about">A trusted marketing research consulting firm in the UAE, Saudi Arabia, Egypt, Pakistan and the USA.</p>
+      <ul class="v-footer__direct">
+        <li><a href="mailto:info@ghausia-research.ae"><i data-icon="mail"></i>info@ghausia-research.ae</a></li>
+        <li><a href="https://www.linkedin.com/company/ghausia-mr-consultancy/" target="_blank" rel="noopener"><i data-icon="linkedin"></i>LinkedIn<span class="sr-only"> (opens in a new tab)</span></a></li>
       </ul>
-      <a class="link-quiet" href="#top" data-to-top>Back to top</a>
     </div>
+    <nav class="v-footer__sitemap" aria-labelledby="footer-sitemap">
+      <h2 class="v-footer__label" id="footer-sitemap">Sitemap</h2>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about/">About us</a></li>
+        <li><a href="/expertise/">Expertise</a></li>
+        <li><a href="/industries/">Industries</a></li>
+        <li><a href="/#testimonials">Testimonials</a></li>
+      </ul>
+    </nav>
+    <div class="v-footer__locations">
+      <h2 class="v-footer__label">Location</h2>
+      <ul class="v-footer__offices"><!-- @render footerOffices --></ul>
+    </div>
+  </div>
+  <div class="container v-footer__bottom">
+    <p>© <span data-year><!-- @render year --></span> Ghausia Research Inc.</p>
+    <a class="link-quiet" href="#top" data-to-top>Back to top <i data-icon="arrow-up"></i></a>
   </div>
 </footer>

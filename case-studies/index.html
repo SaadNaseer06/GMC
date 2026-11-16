@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>Case studies | Ghausia Marketing Research Consultancy</title>
+    <meta name="description" content="How GMC has helped car makers, ministries, airlines, banks, restaurant brands and healthcare organisations decide with evidence: the challenge, what we did and what it delivered.">
+    <meta property="og:title" content="Case studies | GMC">
+    <meta property="og:description" content="Car clinics in Dubai and KSA, research for ministries in Saudi Arabia, the UAE and Qatar, and growth work for QSR brands.">
+    <link rel="canonical" href="https://ghausia-research.ae/case-studies/">
+    <meta property="og:url" content="https://ghausia-research.ae/case-studies/">
+    <!-- @include partials/head.html -->
+    <script type="module" src="/src/js/main.js"></script>
+  </head>
+  <body data-page="case-studies" id="top">
+    <!-- @include partials/loader.html -->
+    <!-- @include partials/header.html -->
+
+    <main id="main">
+      <section class="page-hero cases-hero on-dark" aria-labelledby="page-title">
+        <div class="container page-hero__grid cases-hero__grid">
+          <div class="page-hero__copy">
+            <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">Case studies</li></ol></nav>
+            <h1 class="page-hero__title" id="page-title" data-hero-in>Research our clients acted on</h1>
+            <p class="lead" data-hero-in>Six stories from more than 500 projects: what each client needed to know, how we found out, and what the work delivered.</p>
+          </div>
+          <nav class="case-index" aria-label="Case studies on this page" data-hero-in>
+            <ol><!-- @render caseIndex --></ol>
+          </nav>
+        </div>
+      </section>
+
+      <div class="case-filter" data-case-filters>
+        <div class="container case-filter__inner">
+          <p class="case-filter__label" id="case-filter-label">Research used</p>
+          <div class="case-filter__chips" role="group" aria-labelledby="case-filter-label"><!-- @render caseFilters --></div>
+          <p class="case-filter__count" data-case-count aria-live="polite">Showing all 6 case studies</p>
+        </div>
+      </div>
+
+      <section class="section cases" aria-label="Case studies">
+        <div class="container cases__list" data-case-list>
+          <!-- @render caseList -->
+        </div>
+      </section>
+
+      <section class="section cases-cta on-dark" aria-labelledby="cases-cta-title">
+        <div class="container cases-cta__grid">
+          <h2 class="h2" id="cases-cta-title">Have a question your next decision depends on?</h2>
+          <div class="cases-cta__aside">
+            <p class="lead">Tell us what you need to know and where your customers are. We will suggest the right study and the team to run it.</p>
+            <div class="cases-cta__actions">
+              <a class="btn btn--primary btn--lg" href="/contact/#contact-form">Start a project <i data-icon="arrow-right"></i></a>
+              <a class="btn btn--ghost btn--lg" href="/#plan">Plan a study in two questions</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- @include partials/footer.html -->
+  </body>
+</html>

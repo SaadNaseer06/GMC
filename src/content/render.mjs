@@ -5,6 +5,7 @@ import { resolve } from 'node:path';
 import {
   site, offices, serviceGroups, services, industries, testimonials, clients, briefNeeds, briefMarkets,
 } from './data.mjs';
+import { caseStudies } from './cases.mjs';
 
 const read = (p) => JSON.parse(readFileSync(resolve(process.cwd(), p), 'utf8'));
 const images = read('src/data/images.json');
@@ -56,17 +57,17 @@ export function megaExpertise() {
     <div class="mega__group">
       <p class="mega__group-name">${esc(g.name)}</p>
       <ul class="mega__links">${servicesIn(g.id).map((s) => `
-        <li><a href="/#service-${s.id}"><span class="mega__link-title">${esc(s.title)}</span><span class="mega__link-text">${esc(s.short)}</span></a></li>`).join('')}
+        <li><a href="/expertise/#${s.id}"><span class="mega__link-title">${esc(s.title)}</span><span class="mega__link-text">${esc(s.short)}</span></a></li>`).join('')}
       </ul>
     </div>`).join('');
   return `<div class="container mega__inner">
     <div class="mega__intro">
       <p class="mega__title">Expertise</p>
       <p class="mega__text">Fourteen types of research projects, designed and delivered end to end.</p>
-      <a class="link-arrow" href="/#expertise">All expertise <i data-icon="arrow-right"></i></a>
+      <a class="link-arrow" href="/expertise/">All expertise <i data-icon="arrow-right"></i></a>
     </div>
     <div class="mega__groups">${cols}</div>
-    ${megaFeature({ href: '/#service-car-clinics', image: 'car-clinic-hall', alt: 'Cars arranged for a car clinic', title: 'Car clinics', text: 'Run in Dubai and KSA for Land Rover, BMW, Mercedes, Rolls-Royce and Isuzu.' })}
+    ${megaFeature({ href: '/expertise/#car-clinics', image: 'car-clinic-hall', alt: 'Cars arranged for a car clinic', title: 'Car clinics', text: 'Testing new models with Gulf buyers for Land Rover, BMW, Mercedes, Rolls‑Royce and Isuzu.' })}
   </div>`;
 }
 
@@ -75,12 +76,12 @@ export function megaIndustries() {
     <div class="mega__intro">
       <p class="mega__title">Industries</p>
       <p class="mega__text">Ten sectors, from automotive and hospitality to ministries and social research.</p>
-      <a class="link-arrow" href="/#industries">All industries <i data-icon="arrow-right"></i></a>
+      <a class="link-arrow" href="/industries/">All industries <i data-icon="arrow-right"></i></a>
     </div>
     <ul class="mega__links mega__links--cols">${industries.map((i) => `
-      <li><a href="/#industry-${i.id}"><span class="mega__link-title">${esc(i.title)}</span></a></li>`).join('')}
+      <li><a href="/industries/#${i.id}"><span class="mega__link-title">${esc(i.title)}</span></a></li>`).join('')}
     </ul>
-    ${megaFeature({ href: '/#industry-government-public-sector', image: 'hospitality', alt: 'Guests being served at a café', title: 'Public sector and hospitality', text: 'Ministries in KSA, the UAE and Qatar, plus Emirates, Etihad Airways and dnata.' })}
+    ${megaFeature({ href: '/industries/#government-public-sector', image: 'public-sector', alt: 'Hand touching a diagram of public sector services', title: 'Government and public sector', text: 'Ministries in KSA, the UAE and Qatar, from the Hajj and Umrah journey to the FIFA World Cup 2022.' })}
   </div>`;
 }
 
@@ -94,17 +95,168 @@ export function mobileNav() {
       </ul>
     </div>`;
   return `<nav class="mnav" aria-label="Main">
-    ${section('expertise', 'Expertise', services.map((s) => `<li><a href="/#service-${s.id}">${esc(s.title)}</a></li>`).join(''), { href: '/#expertise', label: 'All expertise' })}
-    ${section('industries', 'Industries', industries.map((i) => `<li><a href="/#industry-${i.id}">${esc(i.title)}</a></li>`).join(''), { href: '/#industries', label: 'All industries' })}
-    <a class="mnav__link" href="/#about" data-nav="about">About</a>
+    <a class="mnav__link" href="/" data-nav="home">Home</a>
+    <a class="mnav__link" href="/about/" data-nav="about">About us</a>
+    ${section('expertise', 'Expertise', services.map((s) => `<li><a href="/expertise/#${s.id}">${esc(s.title)}</a></li>`).join(''), { href: '/expertise/', label: 'All expertise' })}
+    ${section('industries', 'Industries', industries.map((i) => `<li><a href="/industries/#${i.id}">${esc(i.title)}</a></li>`).join(''), { href: '/industries/', label: 'All industries' })}
     <a class="mnav__link" href="/#testimonials">Testimonials</a>
-    <a class="mnav__link" href="/contact/" data-nav="contact">Contact</a>
     <div class="mnav__foot">
       <p class="mnav__label">Local time in our offices</p>
       <ul class="mnav__clocks">${clockBar()}</ul>
-      <a class="btn btn--primary btn--lg btn--block" href="/contact/">Get in touch</a>
+      <a class="btn btn--primary btn--lg btn--block" href="/#contact">Contact us</a>
     </div>
   </nav>`;
+}
+
+/* ------------------------------------------- live-site layout (version 3) */
+
+const flagFile = { uae: 'dubai', ksa: 'saudi', egypt: 'egypt', pakistan: 'pakistan', usa: 'usa' };
+const countryLabel = (o) => (o.id === 'pakistan' ? 'Pakistan' : o.short);
+
+/** Full-bleed hero slideshow: the photos and the research type each one shows. */
+const heroSlideList = [
+  { image: 'discussion', label: 'Qualitative research', alt: 'Two people in discussion at a table with a laptop and notebook' },
+  { image: 'car-clinic-hall', label: 'Car clinics in Dubai and KSA', alt: 'Cars arranged in a white hall for a car clinic, seen from above' },
+  { image: 'team-screen', label: 'UI/UX research', alt: 'Three colleagues reviewing a design on a large screen' },
+  { image: 'city-window', label: 'Market entry strategy', alt: 'Three people looking out over a city from a high window' },
+];
+
+export function heroSlides() {
+  return heroSlideList.map((sl, i) => `<figure class="vhero__slide${i === 0 ? ' is-active' : ''}" data-slide>${picture(sl.image, { alt: i === 0 ? sl.alt : '', sizes: '100vw', priority: i === 0 })}</figure>`).join('');
+}
+
+export function heroSlideNav() {
+  return heroSlideList.map((sl, i) => `
+          <li><button type="button" class="vhero__dot${i === 0 ? ' is-active' : ''}" data-slide-to="${i}" aria-label="Show slide ${i + 1}: ${esc(sl.label)}"${i === 0 ? ' aria-current="true"' : ''}>
+            <span class="vhero__dot-num">${String(i + 1).padStart(2, '0')}</span>
+            <span class="vhero__dot-label">${esc(sl.label)}</span>
+            <span class="vhero__dot-bar" aria-hidden="true"><span></span></span>
+          </button></li>`).join('');
+}
+
+/** "Established in 5 countries": flag, country, city and live local time, in the live site's order. */
+export function countryFlags() {
+  return ['ksa', 'uae', 'egypt', 'usa', 'pakistan'].map((id) => byId(offices, id)).map((o) => `
+          <li class="vcountry">
+            <img class="vcountry__flag" src="/img/flag-${flagFile[o.id]}.webp" width="80" height="80" alt="" loading="lazy" decoding="async">
+            <span class="vcountry__name">${esc(countryLabel(o))}</span>
+            <span class="vcountry__city">${esc(officeCity(o))}</span>
+            <time class="vcountry__time" data-clock="${o.tz}">--:--</time>
+          </li>`).join('');
+}
+
+// The live site's order for the 14 research types
+const liveServiceOrder = [
+  'quantitative-research', 'qualitative-research', 'ui-ux-research', 'market-segmentation', 'car-clinics',
+  'market-feasibility-entry-strategy', 'customer-satisfaction-surveys', 'brand-health-tracking', 'competitive-intelligence',
+  'product-usability-testing', 'ad-campaign-evaluation', 'product-pack-tests', 'concept-testing', 'nps-tracking',
+];
+const liveServices = () => liveServiceOrder.map((id) => byId(services, id));
+
+/** Filter chips for the research types (home cards and the expertise list). */
+export function researchFilters() {
+  const chip = (id, label, n, on) => `<button type="button" class="chip${on ? ' is-active' : ''}" data-vfilter="${id}" aria-pressed="${on}">${esc(label)}<span class="chip__count">${n}</span></button>`;
+  return [chip('all', 'All', services.length, true), ...serviceGroups.map((g) => chip(g.id, g.name, servicesIn(g.id).length, false))].join('');
+}
+
+/** Home: the 14 research types as photo cards. "Discuss" fills the contact form below. */
+export function researchCards() {
+  return liveServices().map((sv) => `
+        <li class="vcard" data-vgroup="${sv.group}" id="service-${sv.id}">
+          <span class="vcard__media">${picture(sv.image, { alt: sv.alt, sizes: '(min-width: 1200px) 400px, (min-width: 700px) 50vw, 100vw' })}</span>
+          <span class="vcard__group">${esc(groupName(sv.group))}</span>
+          <h3 class="vcard__title">${esc(sv.title)}</h3>
+          <p class="vcard__text">${esc(sv.body)}</p>
+          <a class="vcard__link" href="#contact" data-ask-topic="${sv.id}">Discuss this study <i data-icon="arrow-right"></i></a>
+        </li>`).join('');
+}
+
+/** Home: the 14 research types as an index. Each row opens in place. */
+export function researchList() {
+  return liveServices().map((sv, i) => {
+    const n = String(i + 1).padStart(2, '0');
+    const open = i === 0;
+    return `
+            <li class="vitem${open ? ' is-open' : ''}" data-vgroup="${sv.group}" data-id="${sv.id}" id="service-${sv.id}">
+              <h3 class="vitem__h">
+                <button type="button" class="vitem__head" aria-expanded="${open}" aria-controls="vpanel-${sv.id}">
+                  <span class="vitem__num" aria-hidden="true">${n}</span>
+                  <span class="vitem__title">${esc(sv.title)}</span>
+                  <span class="vitem__group">${esc(groupName(sv.group))}</span>
+                  <span class="vitem__plus" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="vitem__panel" id="vpanel-${sv.id}" role="region" aria-label="${esc(sv.title)}"${open ? '' : ' inert'}>
+                <div class="vitem__inner">
+                  <div class="vitem__content">
+                    <span class="vitem__media">${picture(sv.image, { alt: sv.alt, sizes: '(min-width: 900px) 320px, 100vw' })}</span>
+                    <div class="vitem__text">
+                      <p>${esc(sv.body)}</p>
+                      <ul class="vcheck__methods">${sv.methods.map((m) => `<li>${esc(m)}</li>`).join('')}</ul>
+                      <div class="vitem__actions">
+                        <a class="btn btn--primary" href="#contact" data-ask-topic="${sv.id}">Discuss this study <i data-icon="arrow-right"></i></a>
+                        <a class="link-quiet" href="/expertise/#${sv.id}">Full write-up</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>`;
+  }).join('');
+}
+
+/** The photo that follows the pointer over the index (desktop only). */
+export function researchPeek() {
+  return liveServices().map((sv) => picture(sv.image, { alt: '', sizes: '320px', cls: 'vpeek__img' }).replace('<img', `<img data-peek="${sv.id}"`)).join('');
+}
+
+/** Expertise page: the live site's three-column list with check marks. */
+export function expertiseChecklist() {
+  return liveServices().map((sv) => `
+        <li class="vcheck" data-vgroup="${sv.group}" id="${sv.id}">
+          <i data-icon="check" class="vcheck__icon"></i>
+          <div class="vcheck__body">
+            <p class="vcheck__group">${esc(groupName(sv.group))}</p>
+            <h3 class="vcheck__title">${esc(sv.title)}</h3>
+            <p>${esc(sv.body)}</p>
+            <ul class="vcheck__methods">${sv.methods.map((m) => `<li>${esc(m)}</li>`).join('')}</ul>
+            <a class="link-arrow" href="/?topic=${sv.id}#contact">Discuss this study <i data-icon="arrow-right"></i></a>
+          </div>
+        </li>`).join('');
+}
+
+/** Industries page: one card per industry, with the full write-up. */
+export function industryCards() {
+  return industries.map((ind, i) => `
+        <li class="vind" id="${ind.id}">
+          <span class="vind__media">${picture(ind.image, { alt: ind.alt, sizes: '(min-width: 1200px) 400px, (min-width: 700px) 50vw, 100vw', loading: i < 3 ? 'eager' : 'lazy' })}</span>
+          <div class="vind__body">
+            <h2 class="vind__title">${esc(ind.title)}</h2>
+            <p>${esc(ind.body)}</p>
+            <ul class="tags">${ind.highlights.map((h) => `<li>${esc(h)}</li>`).join('')}</ul>
+            <a class="link-arrow" href="/?industry=${ind.id}#contact">Discuss a project <i data-icon="arrow-right"></i></a>
+          </div>
+        </li>`).join('');
+}
+
+/** Office cards under the map, in the live site's order (KSA, UAE, Egypt, USA, Pakistan). */
+export function officeCards() {
+  return ['ksa', 'uae', 'egypt', 'usa', 'pakistan'].map((id) => byId(offices, id)).map((o) => `
+          <li class="vofc" data-office="${o.id}" data-office-card data-office-tz="${o.tz}">
+            <img class="vofc__flag" src="/img/flag-${flagFile[o.id]}.webp" width="56" height="56" alt="" loading="lazy" decoding="async">
+            <p class="vofc__country">${esc(countryLabel(o))}</p>
+            <p class="vofc__city">${esc(o.city)}</p>
+            <p class="vofc__now"><i data-icon="sun" class="vofc__sun"></i><i data-icon="sunset" class="vofc__dusk"></i><i data-icon="moon" class="vofc__moon"></i><time data-clock="${o.tz}">--:--</time><span class="vofc__when" data-daypart></span></p>
+            <a class="vofc__maps" href="${mapsUrl(o)}" target="_blank" rel="noopener">Open in Maps<i data-icon="arrow-up-right"></i><span class="sr-only"> (opens in a new tab)</span></a>
+          </li>`).join('');
+}
+
+export function footerOffices() {
+  return offices.map((o) => `
+        <li class="vfoffice">
+          <p class="vfoffice__name"><img src="/img/flag-${flagFile[o.id]}.webp" width="20" height="20" alt="" loading="lazy">${esc(countryLabel(o))} office</p>
+          <address>${o.address.map(esc).join('<br>')}</address>
+        </li>`).join('');
 }
 
 /* -------------------------------------------------------------------- hero */
@@ -367,6 +519,80 @@ export function industriesMosaic() {
   }).join('');
 }
 
+/* ---------------------------------------------------------- case studies */
+
+const pad2 = (n) => String(n).padStart(2, '0');
+const caseGroups = (c) => [...new Set(c.services.map((id) => byId(services, id).group))];
+
+/** Numbered table of contents in the case studies page hero. */
+export function caseIndex() {
+  return caseStudies.map((c, i) => `
+        <li><a class="case-index__link" href="#${c.id}">
+          <span class="case-index__num">${pad2(i + 1)}</span>
+          <span class="case-index__text"><span class="case-index__sector">${esc(c.sector)}</span><span class="case-index__title">${esc(c.title)}</span></span>
+          <i data-icon="arrow-down"></i>
+        </a></li>`).join('');
+}
+
+/** Filter chips: one per research group used by at least one case. */
+export function caseFilters() {
+  const chip = (id, label, count, on = false) => `<button type="button" class="chip${on ? ' is-active' : ''}" data-case-filter="${id}" aria-pressed="${on}">${esc(label)}<span class="chip__count">${count}</span></button>`;
+  const groups = serviceGroups
+    .map((g) => [g, caseStudies.filter((c) => caseGroups(c).includes(g.id)).length])
+    .filter(([, n]) => n > 0);
+  return [chip('all', 'All', caseStudies.length, true), ...groups.map(([g, n]) => chip(g.id, g.name, n))].join('');
+}
+
+export function caseList() {
+  return caseStudies.map((c, i) => {
+    const t = c.quote && byId(testimonials, c.quote);
+    const facts = [
+      ['Sector', esc(c.sector)],
+      c.markets && ['Markets', esc(c.markets)],
+      ['Work for', c.work.map(esc).join(', ')],
+    ].filter(Boolean);
+    return `
+      <article class="case${i === caseStudies.length - 1 ? ' is-last' : ''}" id="${c.id}" data-case data-groups="${caseGroups(c).join(' ')}" aria-labelledby="${c.id}-title">
+        <header class="case__head">
+          <p class="case__num" aria-hidden="true">${pad2(i + 1)}</p>
+          <h2 class="case__title" id="${c.id}-title">${esc(c.title)}</h2>
+          <dl class="case__facts">${facts.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>
+        </header>
+        <figure class="case__media">${picture(c.image, { alt: c.alt, sizes: '(min-width: 1320px) 1224px, 100vw', loading: i ? 'lazy' : 'eager' })}</figure>
+        <ol class="case__story">
+          <li><h3>The challenge</h3><p>${esc(c.challenge)}</p></li>
+          <li><h3>What we did</h3><p>${esc(c.approach)}</p></li>
+          <li><h3>What it delivered</h3><p>${esc(c.outcome)}</p></li>
+        </ol>${t ? `
+        <blockquote class="case__quote">
+          <p>${esc(t.quote)}</p>
+          <footer><strong>${esc(t.name)}</strong>, ${esc(t.role)}, ${esc(t.place)}</footer>
+        </blockquote>` : ''}
+        <footer class="case__foot">
+          <div class="case__used">
+            <p class="case__used-label">Research used</p>
+            <ul class="tags tags--links">${c.services.map((id) => `<li><a href="/expertise/#${id}">${esc(byId(services, id).title)}</a></li>`).join('')}</ul>
+          </div>
+          <a class="btn btn--primary" href="/contact/?topic=${c.services[0]}#contact-form">Plan a similar study <i data-icon="arrow-right"></i></a>
+        </footer>
+      </article>`;
+  }).join('');
+}
+
+/** Three case cards for the home page. */
+export function caseTeasers() {
+  return ['car-clinics', 'public-sector', 'qsr'].map((id) => byId(caseStudies, id)).map((c) => `
+        <li class="case-card">
+          <a class="case-card__link" href="/case-studies/#${c.id}">
+            <span class="case-card__media">${picture(c.image, { alt: c.alt, sizes: '(min-width: 1024px) 420px, (min-width: 640px) 50vw, 100vw' })}</span>
+            <span class="case-card__sector">${esc(c.sector)}</span>
+            <span class="case-card__title">${esc(c.title)}</span>
+            <span class="case-card__text">${esc(c.short)}</span>
+            <span class="case-card__more">Read the case <i data-icon="arrow-right"></i></span>
+          </a>
+        </li>`).join('');
+}
+
 /* -------------------------------------------------------------- offices */
 
 export function officeMap() {
@@ -386,7 +612,7 @@ export function officeMap() {
   }).join('');
   const labels = offices.map((o) => {
     const p = pin[o.id];
-    return `<span class="map__label map__label--${o.id}" data-office="${o.id}" style="left:${((p.x / map.width) * 100).toFixed(2)}%;top:${((p.y / map.height) * 100).toFixed(2)}%"><span class="map__city">${esc(officeCity(o))}</span><time class="map__time" data-clock="${o.tz}">--:--</time></span>`;
+    return `<span class="map__label map__label--${o.id}" data-office="${o.id}" style="left:${((p.x / map.width) * 100).toFixed(2)}%;top:${((p.y / map.height) * 100).toFixed(2)}%"><img class="map__flag" src="/img/flag-${flagFile[o.id]}.webp" width="16" height="16" alt="" loading="lazy"><span class="map__city">${esc(officeCity(o))}</span><time class="map__time" data-clock="${o.tz}">--:--</time></span>`;
   }).join('');
   return `<div class="map__canvas" style="aspect-ratio:${map.width} / ${map.height}">
       <img class="map__dots" src="/img/world-dots.svg" alt="" width="${map.width * 8}" height="${map.height * 8}" loading="lazy" decoding="async">
@@ -460,15 +686,15 @@ export function footerColumns() {
   return [
     col('Expertise', [
       ...pick(['quantitative-research', 'qualitative-research', 'ui-ux-research', 'brand-health-tracking', 'car-clinics', 'market-feasibility-entry-strategy'])
-        .map((s) => [`/#service-${s.id}`, s.title.replace(', trend analysis and entry strategy', ' and entry strategy')]),
-      ['/#expertise', 'All expertise'],
+        .map((s) => [`/expertise/#${s.id}`, s.title.replace(', trend analysis and entry strategy', ' and entry strategy')]),
+      ['/expertise/', 'All expertise'],
     ]),
     col('Industries', [
       ...['automotive', 'government-public-sector', 'hospitality', 'healthcare', 'finance-banking', 'qsr']
-        .map((id) => byId(industries, id)).map((i) => [`/#industry-${i.id}`, i.title]),
-      ['/#industries', 'All industries'],
+        .map((id) => byId(industries, id)).map((i) => [`/industries/#${i.id}`, i.title]),
+      ['/industries/', 'All industries'],
     ]),
-    col('Company', [['/#about', 'About GMC'], ['/#testimonials', 'Testimonials'], ['/contact/', 'Contact'], [site.linkedin, 'LinkedIn']]),
+    col('Company', [['/about/', 'About GMC'], ['/case-studies/', 'Case studies'], ['/#testimonials', 'Testimonials'], ['/contact/', 'Contact'], [site.linkedin, 'LinkedIn']]),
     `
       <div class="footer__col footer__col--offices">
         <p class="footer__heading">Offices</p>
@@ -478,3 +704,18 @@ export function footerColumns() {
 }
 
 export const year = () => String(new Date().getFullYear());
+
+/** A photo placed straight from a page: <!-- @render photo name [wide] -->. */
+const photoAlt = {
+  'jigsaw-map': 'Hand placing a piece in a jigsaw puzzle of a world map',
+  'desk-clock': 'Person working at a desk with a laptop, a large monitor and a clock',
+  'city-window': 'Three people looking out over a city from a high window',
+  ideas: 'Cupped hands holding a string of small lights',
+  crystal: 'Abstract crystal shape on a dark floor crossed by pink lines of light',
+  lens: '',
+};
+export function photo(name, size = 'half') {
+  if (!(name in photoAlt)) throw new Error(`No alt text for photo "${name}"`);
+  const sizes = size === 'wide' ? '100vw' : '(min-width: 1024px) 50vw, 100vw';
+  return picture(name, { alt: photoAlt[name], sizes });
+}

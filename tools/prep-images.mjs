@@ -34,17 +34,32 @@ const photos = {
   'community': '2023_09_social-scaled.jpg',
   'public-sector': '2023_09_Government-Public-sector.jpg',
   'restaurant': '2023_09_11-1-scaled.jpg',
+  // Photos from the live home and About page (why-choose-us rows, banner, team)
+  'jigsaw-map': '2023_09_section2-scaled.jpg',
+  'city-window': '2023_09_section3-scaled.jpg',
+  'desk-clock': '2023_09_opportunities2-scaled.jpg',
+  'lens': '2023_09_magnifying-glass-magnifies-metal-bottle-laboratory-generated-by-ai-scaled.jpg',
+  'team-screen': '2023_09_concentrated-colleagues-office-using-computer-1024x683.jpg',
+  'crystal': '2023_09_banner-2-1024x683.jpg',
 };
 
+// ONLY=a,b processes just those photos and merges them into the manifest
+const only = process.env.ONLY ? new Set(process.env.ONLY.split(',')) : null;
+
 const WIDTHS = [640, 1024, 1600];
+const FULL_BLEED = new Set(['jigsaw-map', 'city-window', 'desk-clock', 'lens']);
 const manifest = {};
 
 for (const [name, file] of Object.entries(photos)) {
+  if (only && !only.has(name)) continue;
   const input = join(SRC, file);
   if (!existsSync(input)) { console.warn('missing', input); continue; }
   const meta = await sharp(input).metadata();
-  const widths = WIDTHS.filter((w) => w < meta.width).concat(meta.width < 1600 ? [meta.width] : []);
-  const unique = [...new Set(widths.map((w) => Math.min(w, 1600)))].sort((a, b) => a - b);
+  // Full-bleed photos (hero slides, banners) also get a 2400px file
+  const max = FULL_BLEED.has(name) ? 2400 : 1600;
+  const sizes = FULL_BLEED.has(name) ? [...WIDTHS, 2400] : WIDTHS;
+  const widths = sizes.filter((w) => w < meta.width).concat(meta.width < max ? [meta.width] : []);
+  const unique = [...new Set(widths.map((w) => Math.min(w, max)))].sort((a, b) => a - b);
   manifest[name] = { w: meta.width, h: meta.height, widths: unique };
   for (const w of unique) {
     await sharp(input)
@@ -55,6 +70,14 @@ for (const [name, file] of Object.entries(photos)) {
       .toFile(join(OUT, `${name}-${w}.webp`));
   }
   console.log(name.padEnd(18), `${meta.width}x${meta.height}`, '->', unique.join(', '));
+}
+
+if (only) {
+  const fs = await import('node:fs');
+  const prev = JSON.parse(fs.readFileSync('src/data/images.json', 'utf8'));
+  fs.writeFileSync('src/data/images.json', JSON.stringify({ ...prev, ...manifest }, null, 2));
+  console.log('merged into src/data/images.json');
+  process.exit(0);
 }
 
 // The lean home hero shows this photo across most of the viewport, so it gets

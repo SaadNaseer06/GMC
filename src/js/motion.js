@@ -33,7 +33,8 @@ export function initMotion() {
     if (!target) return;
     e.preventDefault();
     const offset = id === 'top' ? 0 : -scrollPaddingTop();
-    if (lenis) lenis.scrollTo(target, { offset, duration: 1.1 });
+    // Lenis already subtracts the root's scroll-padding-top for element targets
+    if (lenis) lenis.scrollTo(target, { duration: 1.1 });
     else window.scrollTo({ top: id === 'top' ? 0 : target.getBoundingClientRect().top + window.scrollY + offset, behavior: reduce ? 'auto' : 'smooth' });
     const oldURL = window.location.href;
     history.pushState(null, '', url.hash);

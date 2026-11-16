@@ -1,0 +1,366 @@
+/* ============================================================================
+   Home page (lean layout, index.html)
+   Preserves the GMC petrol + teal design system and interactive modules while
+   removing the hero brief form and tightening vertical pacing across sections.
+   Strictly scoped to body.is-lean so the inner pages remain untouched.
+   (The previous long home is kept at /home-backup/ for reference.)
+   ============================================================================ */
+
+body.is-lean {
+  --section: clamp(56px, 4vw + 24px, 84px);
+  --head-gap: clamp(24px, 2.6vw, 40px);
+}
+
+/* Quiet chrome: no office-clocks bar above the nav. Set on <html>, where the
+   header height (--header-h) is calculated, so the page does not reserve the
+   bar's space and sticky elements line up under the nav. */
+html:has(body.is-lean) {
+  --utility-h: 0px;
+}
+
+body.is-lean .utility {
+  display: none;
+}
+
+/* ---------- Hero: copy on petrol, photograph bleeding off the right edge ----------
+   The stage holds the photo, the copy and the proof strip.
+   Wide screens: the photo fills the right 70% and fades into the petrol
+   ground on the left (under the copy) and at the bottom (under the figures),
+   so the type never sits on raw photography.
+   Small screens: the photo opens the banner as a full-width band, so it is
+   the first thing on screen, and the copy starts in its lower fade. */
+body.is-lean .hero {
+  padding-top: 0;
+}
+
+body.is-lean .hero__stage {
+  --scrim: 11, 46, 50; /* petrol-900 */
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+}
+
+body.is-lean .hero__media {
+  position: relative;
+  z-index: 0; /* positive layers: full-page screenshot tools drop negative ones */
+  height: clamp(180px, 50vw, 400px);
+  overflow: hidden;
+  background: var(--petrol-900);
+}
+
+body.is-lean .hero__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 44%;
+}
+
+body.is-lean .hero__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, rgb(var(--scrim)) 0%, rgba(var(--scrim), 0.72) 20%, rgba(var(--scrim), 0) 58%),
+    linear-gradient(rgba(var(--scrim), 0.18), rgba(var(--scrim), 0.18));
+}
+
+@media (min-width: 1024px) {
+  body.is-lean .hero__stage {
+    justify-content: space-between;
+    min-height: min(760px, calc(100svh - var(--header-h)));
+    padding-top: clamp(48px, 5.5vw, 84px);
+  }
+
+  body.is-lean .hero__media {
+    position: absolute;
+    inset: 0 0 0 30%;
+    height: auto;
+  }
+
+  body.is-lean .hero__photo {
+    object-position: 50% 42%;
+  }
+
+  body.is-lean .hero__media::after {
+    background:
+      linear-gradient(to top, rgb(var(--scrim)) 0%, rgba(var(--scrim), 0.9) 17%, rgba(var(--scrim), 0) 48%),
+      linear-gradient(to bottom, rgba(var(--scrim), 0.5) 0%, rgba(var(--scrim), 0) 22%),
+      linear-gradient(90deg, rgb(var(--scrim)) 0%, rgba(var(--scrim), 0.9) 14%, rgba(var(--scrim), 0.5) 44%, rgba(var(--scrim), 0.2) 100%);
+  }
+}
+
+body.is-lean .hero__grid--lean {
+  display: block;
+  min-height: 0;
+  margin-top: -8px; /* the kicker sits in the photo's lower fade */
+}
+
+@media (min-width: 1024px) {
+  body.is-lean .hero__grid--lean {
+    margin-top: 0;
+  }
+}
+
+body.is-lean .hero__copy {
+  max-width: 44rem;
+}
+
+body.is-lean .hero__kicker {
+  margin-bottom: 22px;
+}
+
+body.is-lean .hero__title {
+  /* the floor keeps "recommendations" on one line down to 320px */
+  font-size: clamp(2rem, 1.35rem + 3.2vw, 4rem);
+  max-width: 19ch;
+}
+
+body.is-lean .hero__lead {
+  max-width: 30em;
+  margin-top: 22px;
+  color: var(--fg);
+}
+
+body.is-lean .hero__actions {
+  margin-top: 32px;
+}
+
+/* Proof metrics: one calm row closing the banner */
+/* Copy and figures sit above the photo layer */
+body.is-lean .hero__grid--lean,
+body.is-lean .hero__proof {
+  position: relative;
+  z-index: 1;
+}
+
+body.is-lean .hero__proof {
+  margin-top: clamp(32px, 4.5vw, 68px);
+}
+
+body.is-lean .hero__strip {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--hair);
+}
+
+@media (min-width: 900px) {
+  body.is-lean .hero__strip {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+body.is-lean .hero__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px 20px 20px 0;
+  border-bottom: 1px solid var(--hair);
+}
+
+/* The clients row below draws the closing rule */
+body.is-lean .hero__stat:nth-last-child(-n + 2) {
+  border-bottom: 0;
+}
+
+@media (min-width: 900px) {
+  body.is-lean .hero__stat {
+    border-bottom: 0;
+    padding: 22px 24px 4px 0;
+  }
+
+  body.is-lean .hero__stat + .hero__stat {
+    padding-left: 24px;
+    border-left: 1px solid var(--hair);
+  }
+}
+
+body.is-lean .hero__stat dd {
+  order: -1;
+  font-size: clamp(2.25rem, 1.7rem + 1.8vw, 3.25rem);
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+  color: var(--fg);
+}
+
+body.is-lean .hero__stat dt {
+  max-width: 16ch;
+  font-size: var(--fs-small);
+  line-height: 1.35;
+  color: var(--fg-3);
+}
+
+body.is-lean .hero__clients {
+  margin-top: clamp(20px, 2.5vw, 32px);
+  padding-block: 18px;
+}
+
+/* ---------- Why Choose Us: three plain columns from the live site ----------
+   Markup: partials/why-lean.html. Live headings and paragraphs only; no cards
+   or charts. Rules between the columns match the hero's proof strip. */
+body.is-lean .why-cols {
+  display: grid;
+  border-top: 1px solid var(--hair);
+}
+
+body.is-lean .why-col {
+  display: grid;
+  align-content: start;
+  row-gap: 14px;
+  padding-block: 28px 32px;
+  border-bottom: 1px solid var(--hair);
+}
+
+body.is-lean .why-col .h3 {
+  font-size: clamp(1.125rem, 1rem + 0.4vw, 1.375rem);
+  line-height: 1.25;
+  max-width: 22ch;
+}
+
+body.is-lean .why-col__text {
+  max-width: 38em;
+  color: var(--fg-2);
+}
+
+@media (min-width: 1024px) {
+  /* Headings and copy share two rows, so they line up across columns */
+  body.is-lean .why-cols {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: auto 1fr;
+    border-bottom: 1px solid var(--hair);
+  }
+
+  body.is-lean .why-col {
+    grid-row: span 2;
+    grid-template-rows: subgrid;
+    padding: 32px clamp(24px, 2.6vw, 40px) 36px;
+    border-bottom: 0;
+  }
+
+  body.is-lean .why-col:first-child {
+    padding-left: 0;
+  }
+
+  body.is-lean .why-col:last-child {
+    padding-right: 0;
+  }
+
+  body.is-lean .why-col + .why-col {
+    border-left: 1px solid var(--hair);
+  }
+}
+
+/* Intro and Expertise match the long home page. The intro's figures are not
+   repeated (the hero strip carries them). The explorer uses the lean variant
+   (short filter labels, name-only tabs). */
+
+/* ---------- Industries carousel (4:3 cards instead of tall 4:5) ---------- */
+body.is-lean .ind-card__media {
+  aspect-ratio: 4 / 3;
+  margin-bottom: 10px;
+}
+
+body.is-lean .carousel__foot {
+  margin-top: 20px;
+}
+
+/* ---------- Offices (compact map + 5-col grid) ---------- */
+body.is-lean .map {
+  max-width: 960px;
+  margin-inline: auto;
+  margin-bottom: clamp(24px, 3vw, 40px);
+}
+
+body.is-lean .office {
+  padding: 18px 18px 18px 0;
+}
+
+@media (min-width: 960px) {
+  body.is-lean .office + .office {
+    padding-left: clamp(14px, 1.6vw, 20px);
+  }
+}
+
+@media (max-width: 559px) {
+  body.is-lean .office-list > .office:nth-child(even) {
+    padding-left: 16px;
+  }
+}
+
+body.is-lean .office__address {
+  margin: 10px 0 12px;
+}
+
+/* ---------- Testimonials ---------- */
+body.is-lean .tslider__stage {
+  margin-top: clamp(24px, 3vw, 40px);
+}
+
+body.is-lean .tslider__quote::before {
+  height: 0.58em;
+  margin-bottom: 8px;
+  font-size: 3.75rem;
+}
+
+body.is-lean .tslider__quote p {
+  font-size: clamp(1.1875rem, 1rem + 0.7vw, 1.5625rem);
+  line-height: 1.38;
+}
+
+body.is-lean .tslider__slide--long .tslider__quote p {
+  font-size: clamp(1.125rem, 0.98rem + 0.45vw, 1.375rem);
+}
+
+body.is-lean .tslider__cite {
+  margin-top: 20px;
+}
+
+body.is-lean .tslider__controls {
+  margin-top: 24px;
+}
+
+/* ---------- Contact ---------- */
+body.is-lean .contact__grid {
+  gap: clamp(32px, 4.5vw, 72px);
+}
+
+body.is-lean .clocks-list {
+  margin-top: 24px;
+}
+
+body.is-lean .contact__card {
+  padding: clamp(20px, 2.5vw, 32px);
+}
+
+body.is-lean .form__grid {
+  gap: 14px;
+}
+
+body.is-lean .field input,
+body.is-lean .field select,
+body.is-lean .field .select select {
+  height: 44px;
+}
+
+body.is-lean .field textarea {
+  min-height: 112px;
+}
+
+body.is-lean .form__foot {
+  margin-top: 20px;
+}
+
+/* ---------- Footer ---------- */
+body.is-lean .site-footer {
+  padding-block: clamp(48px, 5vw, 72px) 24px;
+}
+
+body.is-lean .footer__top {
+  padding-bottom: 36px;
+}
+
+body.is-lean .footer__cols {
+  padding-block: 36px;
+}

@@ -11,37 +11,29 @@
     <!-- @include partials/head.html -->
     <script type="module" src="/src/js/main.js"></script>
   </head>
-  <body data-page="industries" id="top">
+  <body data-page="industries" class="v3" id="top">
     <!-- @include partials/loader.html -->
     <!-- @include partials/header.html -->
 
     <main id="main">
-      <section class="page-hero on-dark" aria-labelledby="page-title">
-        <div class="container page-hero__grid">
-          <div class="page-hero__copy">
-            <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">Industries</li></ol></nav>
-            <h1 class="page-hero__title" id="page-title" data-hero-in>Extensive experience in diverse industries</h1>
-            <p class="lead" data-hero-in>Ten sectors where we have designed and run research, from car clinics for global car makers to studies for ministries in Saudi Arabia, the UAE and Qatar.</p>
-          </div>
-          <div class="mosaic" data-hero-in><!-- @render industriesMosaic --></div>
+      <section class="vpage-hero on-dark" aria-labelledby="page-title">
+        <div class="vpage-hero__dots" aria-hidden="true"></div>
+        <div class="container vpage-hero__inner">
+          <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">Industries</li></ol></nav>
+          <p class="vtag" data-hero-in><span class="vslash" aria-hidden="true"></span>Industries</p>
+          <h1 class="vpage-hero__title" id="page-title" data-hero-in>Extensive experience in <em>diverse industries</em></h1>
         </div>
       </section>
 
-      <section class="section ind-detail" aria-label="Industries in detail">
-        <div class="container ind-detail__grid">
-          <nav class="ind-index" aria-label="Industries">
-            <p class="ind-index__label">Industries</p>
-            <ul><!-- @render industriesIndex --></ul>
-          </nav>
-          <div class="ind-detail__list">
-            <!-- @render industriesDetail -->
-          </div>
+      <section class="section vindustries" aria-label="Industries">
+        <div class="container">
+          <ul class="vinds"><!-- @render industryCards --></ul>
         </div>
       </section>
+
+      <!-- @include partials/banner.html -->
 
       <!-- @include partials/testimonials.html -->
-
-      <!-- @include partials/contact.html -->
     </main>
 
     <!-- @include partials/footer.html -->

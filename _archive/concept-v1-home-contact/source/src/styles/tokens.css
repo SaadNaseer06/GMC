@@ -1,0 +1,121 @@
+/* GMC design tokens
+   Petrol is the brand's dark ground (a colour, not a near-black).
+   Teal comes from the GMC logo and is the only accent. */
+:root {
+  /* Petrol ramp */
+  --petrol-950: #061f23;
+  --petrol-900: #0b2e32;
+  --petrol-850: #0f363b;
+  --petrol-800: #163d41;
+  --petrol-700: #255156;
+
+  /* Brand teal */
+  --teal: #2ab7ae;
+  --teal-hover: #4cc6be;
+  --teal-300: #7fd8d2;
+  --teal-700: #0b7a73;
+  --teal-tint: #dcf1ef;
+
+  /* Light grounds */
+  --white: #ffffff;
+  --mist: #eef3f2;
+  --mist-2: #e1eae9;
+
+  /* Text on light */
+  --ink: #0b2e32;
+  --ink-2: #3e5c60;
+  --ink-3: #567276;
+
+  /* Text on dark */
+  --on-dark: #f2f7f6;
+  --on-dark-2: #b5cbcb;
+  --on-dark-3: #8eaaab;
+
+  --danger: #b4332c;
+  --danger-on-dark: #ff9a8f;
+  --success: #12704a;
+
+  /* Type */
+  --font: 'Schibsted Grotesk Variable', 'Schibsted Grotesk', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --fs-display: clamp(2.5rem, 1.25rem + 4.2vw, 4.75rem);
+  --fs-h1: clamp(2.375rem, 1.55rem + 3vw, 4.25rem);
+  --fs-h2: clamp(1.875rem, 1.35rem + 2vw, 3.25rem);
+  --fs-h3: clamp(1.375rem, 1.18rem + 0.75vw, 1.875rem);
+  --fs-lead: clamp(1.125rem, 1.04rem + 0.35vw, 1.3125rem);
+  --fs-body: 1.0625rem;
+  --fs-small: 0.9375rem;
+  --fs-xs: 0.8125rem;
+
+  /* Space */
+  --gutter: clamp(20px, 4vw, 48px);
+  --maxw: 1320px;
+  --section: clamp(80px, 5.5vw + 48px, 144px);
+  --head-gap: clamp(40px, 4vw, 64px);
+
+  /* Shape */
+  --r-xs: 6px;
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 20px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --t-fast: 160ms;
+  --t: 220ms;
+  --t-slow: 480ms;
+
+  --shadow-float: 0 32px 64px -28px rgba(6, 31, 35, 0.55), 0 2px 8px rgba(6, 31, 35, 0.1);
+  --shadow-menu: 0 24px 48px -24px rgba(6, 31, 35, 0.35);
+
+  /* Header (JS keeps --header-visible in sync while scrolling) */
+  --utility-h: 36px;
+  --nav-h: 104px; /* at the top of the page */
+  --nav-h-compact: 80px; /* once scrolled */
+  --header-h: calc(var(--utility-h) + var(--nav-h));
+  --header-visible: var(--header-h);
+}
+
+/* Semantic roles that switch with the ground a component sits on */
+:root,
+.on-light {
+  --fg: var(--ink);
+  --fg-2: var(--ink-2);
+  --fg-3: var(--ink-3);
+  --hair: rgba(11, 46, 50, 0.12);
+  --hair-strong: rgba(11, 46, 50, 0.24);
+  --link: var(--teal-700);
+  --btn-bg: var(--ink);
+  --btn-fg: var(--white);
+  --btn-bg-hover: var(--petrol-700);
+  --ghost-hover: rgba(11, 46, 50, 0.05);
+  --chip-on-bg: var(--ink);
+  --chip-on-fg: var(--white);
+  --danger-fg: var(--danger);
+  color: var(--fg);
+}
+
+.on-dark {
+  --fg: var(--on-dark);
+  --fg-2: var(--on-dark-2);
+  --fg-3: var(--on-dark-3);
+  --hair: rgba(242, 247, 246, 0.12);
+  --hair-strong: rgba(242, 247, 246, 0.26);
+  --link: var(--teal-300);
+  --btn-bg: var(--teal);
+  --btn-fg: var(--petrol-950);
+  --btn-bg-hover: var(--teal-hover);
+  --ghost-hover: rgba(242, 247, 246, 0.07);
+  --chip-on-bg: var(--on-dark);
+  --chip-on-fg: var(--petrol-900);
+  --danger-fg: var(--danger-on-dark);
+  background-color: var(--petrol-900);
+  color: var(--fg);
+}
+
+@media (max-width: 899px) {
+  :root {
+    --utility-h: 0px;
+    --nav-h: 80px;
+    --nav-h-compact: 68px;
+  }
+}

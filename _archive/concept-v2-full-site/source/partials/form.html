@@ -1,0 +1,53 @@
+<form class="form" id="contact-form" data-form novalidate data-endpoint="" aria-label="Contact GMC">
+  <template data-icon-ok><i data-icon="circle-check"></i></template>
+  <template data-icon-warn><i data-icon="circle-alert"></i></template>
+  <div class="form__brief" data-form-brief hidden>
+    <p class="form__brief-title">Your brief</p>
+    <p class="form__brief-text" data-form-brief-text></p>
+    <button type="button" class="link-quiet" data-form-brief-clear>Remove</button>
+  </div>
+  <div class="form__grid">
+    <div class="field">
+      <label for="f-name">Name</label>
+      <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-error">
+      <p class="field__error" id="f-name-error" hidden></p>
+    </div>
+    <div class="field">
+      <label for="f-email">Email</label>
+      <input id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="f-email-error">
+      <p class="field__error" id="f-email-error" hidden></p>
+    </div>
+    <div class="field">
+      <label for="f-phone">Phone number <span class="field__opt">Optional</span></label>
+      <input id="f-phone" name="phone" type="tel" autocomplete="tel">
+    </div>
+    <div class="field">
+      <label for="f-company">Company name <span class="field__opt">Optional</span></label>
+      <input id="f-company" name="company" type="text" autocomplete="organization">
+    </div>
+    <div class="field">
+      <label for="f-website">Website <span class="field__opt">Optional</span></label>
+      <input id="f-website" name="website" type="text" inputmode="url" autocomplete="url" aria-describedby="f-website-error">
+      <p class="field__error" id="f-website-error" hidden></p>
+    </div>
+    <div class="field">
+      <label for="f-topic">Topic <span class="field__opt">Optional</span></label>
+      <div class="select select--light">
+        <select id="f-topic" name="topic">
+          <option value="">Not sure yet</option><!-- @render topicOptions -->
+        </select>
+        <i data-icon="chevron-down"></i>
+      </div>
+    </div>
+    <div class="field field--full">
+      <label for="f-message">Message</label>
+      <textarea id="f-message" name="message" rows="5" required aria-describedby="f-message-error"></textarea>
+      <p class="field__error" id="f-message-error" hidden></p>
+    </div>
+  </div>
+  <div class="form__foot">
+    <button class="btn btn--primary btn--lg" type="submit" data-form-submit>Send message<i data-icon="send"></i></button>
+    <p class="form__note">Prefer email? Write to <a href="mailto:info@ghausia-research.ae">info@ghausia-research.ae</a></p>
+  </div>
+  <div class="form__status" data-form-status role="status" aria-live="polite"></div>
+</form>
